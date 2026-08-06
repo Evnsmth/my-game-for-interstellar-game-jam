@@ -107,7 +107,7 @@ func knockback_state(delta):
 	if knockback_timer <= 0:
 		change_state(State.MOVE)
 
-func dead_state(delta):
+func dead_state(_delta):
 	pass
 
 func shoot():
