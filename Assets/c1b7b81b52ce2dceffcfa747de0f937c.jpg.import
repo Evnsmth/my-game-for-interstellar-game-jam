@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt1pn1s41qyax"
-path="res://.godot/imported/slimef.svg-4f3a563d5fd4b8bb6831f55bf02711d1.ctex"
+uid="uid://2fomb0i7y8fo"
+path="res://.godot/imported/c1b7b81b52ce2dceffcfa747de0f937c.jpg-4504e7a39071852fc0b0c9d2488d90c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/slimef.svg"
-dest_files=["res://.godot/imported/slimef.svg-4f3a563d5fd4b8bb6831f55bf02711d1.ctex"]
+source_file="res://Assets/c1b7b81b52ce2dceffcfa747de0f937c.jpg"
+dest_files=["res://.godot/imported/c1b7b81b52ce2dceffcfa747de0f937c.jpg-4504e7a39071852fc0b0c9d2488d90c7.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://1j4k2pa43mol"]
 
 [ext_resource type="PackedScene" uid="uid://dmdh2cyi6uar0" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="Texture2D" uid="uid://dyis2txt23his" path="res://Assets/backgrounddetailed1.png.preview.jpg" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://dhmpbln4xn5i4" path="res://Scenes/room_1.tscn" id="1_qxrlw"]
 
 [node name="Game" type="Node2D" unique_id=949777512]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1543121891]
-scale = Vector2(10, 10)
-texture = ExtResource("1_qxrlw")
+[node name="Room1" parent="." unique_id=395867149 instance=ExtResource("1_qxrlw")]
 
 [node name="Player" parent="." unique_id=1540911374 instance=ExtResource("1_ebmjs")]
