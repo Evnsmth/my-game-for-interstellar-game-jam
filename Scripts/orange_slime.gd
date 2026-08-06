@@ -7,6 +7,8 @@ signal died
 @export var speed = 100.0
 @export var max_health = 3
 
+const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
+
 var current_health = max_health
 
 func _ready() -> void:
@@ -27,6 +29,9 @@ func take_damage(amount : int):
 		die()
 
 func die():
+	var slime_puddle = SLIME_PUDDLE_SCENE.instantiate()
+	get_tree().current_scene.add_child(slime_puddle)
+	slime_puddle.global_position = position
 	died.emit()
 	queue_free()
 
