@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2mup"]
 size = Vector2(402, 358)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4w25"]
+size = Vector2(404, 358)
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1891310205]
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
@@ -17,3 +20,12 @@ texture = ExtResource("1_1axyg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=427094607]
 shape = SubResource("RectangleShape2D_n2mup")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=455524939]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=157671956]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_v4w25")
+debug_color = Color(0.99043876, 0.09602062, 3.85046e-07, 0.41960785)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

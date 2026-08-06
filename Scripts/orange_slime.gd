@@ -26,3 +26,8 @@ func take_damage(amount : int):
 
 func die():
 	queue_free()
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body.has_method("get_hit"):
+		body.get_hit(1, position)
