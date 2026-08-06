@@ -16,6 +16,7 @@ texture = ExtResource("1_m8co2")
 [node name="LWall" type="StaticBody2D" parent="." unique_id=273008515]
 position = Vector2(-980, 0)
 scale = Vector2(1, 2)
+collision_layer = 8
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="LWall" unique_id=240166400]
@@ -28,6 +29,7 @@ shape = SubResource("RectangleShape2D_isvj2")
 [node name="RWall" type="StaticBody2D" parent="." unique_id=1091134468]
 position = Vector2(980, 0)
 scale = Vector2(1, 2)
+collision_layer = 8
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="RWall" unique_id=1458812199]
@@ -41,6 +43,7 @@ shape = SubResource("RectangleShape2D_isvj2")
 position = Vector2(0, -480)
 rotation = 1.5707964
 scale = Vector2(1, 4)
+collision_layer = 8
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="TWall" unique_id=340230968]
@@ -54,6 +57,7 @@ shape = SubResource("RectangleShape2D_isvj2")
 position = Vector2(0, 480)
 rotation = 1.5707964
 scale = Vector2(1, 4)
+collision_layer = 8
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BWall" unique_id=1918610725]

@@ -8,6 +8,8 @@ size = Vector2(402, 358)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1891310205]
 scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_n2mup")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=762775742]
