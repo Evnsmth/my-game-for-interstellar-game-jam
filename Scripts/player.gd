@@ -6,6 +6,10 @@ enum State {
 	ATTACK
 }
 
+#region Constants
+const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
+#endregion
+
 #region Onready Variables
 @onready var aim_pivot: Node2D = $AimPivot
 #endregion
@@ -56,6 +60,9 @@ func move_state(delta):
 	if(Input.is_action_just_pressed("dash")):
 		change_state(State.DASH)
 	
+	if(Input.is_action_just_pressed("shoot")):
+		shoot()
+	
 	# Increase velocity
 	if direction:
 		velocity = direction * movement_speed
@@ -81,3 +88,9 @@ func dash_state(delta):
 func attack_state(delta):
 	pass
  
+func shoot():
+	var bullet = BULLET_SCENE.instantiate()
+	get_tree().current_scene.add_child(bullet)
+	bullet.global_position = $AimPivot/BulletSpawn.global_position
+	bullet.direction = global_position.direction_to(get_global_mouse_position())
+	bullet.rotation = bullet.direction.angle() + deg_to_rad(90)

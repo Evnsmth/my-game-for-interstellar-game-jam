@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dyis2txt23his" path="res://Assets/backgrounddetailed1.png.preview.jpg" id="1_m8co2"]
 [ext_resource type="Texture2D" uid="uid://2fomb0i7y8fo" path="res://Assets/c1b7b81b52ce2dceffcfa747de0f937c.jpg" id="2_7r34j"]
+[ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/orange_slime.tscn" id="3_7r34j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isvj2"]
 size = Vector2(48, 501)
@@ -64,3 +65,6 @@ shape = SubResource("RectangleShape2D_isvj2")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
 zoom = Vector2(0.5, 0.5)
+
+[node name="CharacterBody2D" parent="." unique_id=1891310205 instance=ExtResource("3_7r34j")]
+position = Vector2(-802, -311)
