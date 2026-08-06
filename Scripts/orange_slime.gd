@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 @onready var player: CharacterBody2D
 
 @export var speed = 100.0
@@ -25,6 +27,7 @@ func take_damage(amount : int):
 		die()
 
 func die():
+	died.emit()
 	queue_free()
 
 

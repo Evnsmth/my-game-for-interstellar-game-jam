@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://1j4k2pa43mol"]
 
-[ext_resource type="PackedScene" uid="uid://dhmpbln4xn5i4" path="res://Scenes/room_1.tscn" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://dhmpbln4xn5i4" path="res://Scenes/floor_1.tscn" id="1_qxrlw"]
 
 [node name="Game" type="Node2D" unique_id=949777512]
 
-[node name="Room1" parent="." unique_id=395867149 instance=ExtResource("1_qxrlw")]
+[node name="Floor1" parent="." unique_id=395867149 instance=ExtResource("1_qxrlw")]

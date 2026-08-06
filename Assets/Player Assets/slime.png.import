@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyen4rrw0lfn1"
-path="res://.godot/imported/Arrow-PNG-free-6.png-42e3e6a97ad9a5f83fb60403bf75f0c0.ctex"
+uid="uid://buvuil6c05x5s"
+path="res://.godot/imported/slime.png-22c5e07ade692b8c51e5eea6ea18db48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Arrow-PNG-free-6.png"
-dest_files=["res://.godot/imported/Arrow-PNG-free-6.png-42e3e6a97ad9a5f83fb60403bf75f0c0.ctex"]
+source_file="res://Assets/Player Assets/slime.png"
+dest_files=["res://.godot/imported/slime.png-22c5e07ade692b8c51e5eea6ea18db48.ctex"]
 
 [params]
 

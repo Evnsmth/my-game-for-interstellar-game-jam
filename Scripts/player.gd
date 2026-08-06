@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 enum State {
 	MOVE,
 	DASH,
@@ -20,6 +21,7 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 @export var movement_speed = 300.0
 @export var deceleration = 800.0
 @export var dash_time = 0.15
+@export var dash_cooldown_time = 0.4
 @export var dash_speed = 800.0
 @export var knockback_speed := 700.0
 @export var knockback_time := 0.125
@@ -29,6 +31,8 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 var current_state: State = State.MOVE
 var current_health = max_health
 var dash_timer = 0.0
+var dash_cooldown_timer = 0.0
+var can_dash = true
 var dash_direction = Vector2.ZERO
 var knockback_direction := Vector2.ZERO
 var knockback_timer := 0.0
@@ -39,6 +43,10 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if(dash_cooldown_timer > 0):
+		dash_cooldown_timer -= delta
+	else:
+		can_dash = true
 
 	match current_state:
 		
@@ -71,7 +79,8 @@ func move_state(delta):
 	
 	#Check if dash was pressed
 	if(Input.is_action_just_pressed("dash")):
-		change_state(State.DASH)
+		if(can_dash == true):
+			change_state(State.DASH)
 	
 	if(Input.is_action_just_pressed("shoot")):
 		shoot()
@@ -88,6 +97,7 @@ func move_state(delta):
 	move_and_slide()
 
 func dash_state(delta):
+	can_dash = false
 
 	velocity = dash_direction * dash_speed
 
@@ -96,6 +106,7 @@ func dash_state(delta):
 	dash_timer -= delta
 
 	if(dash_timer <0):
+		dash_cooldown_timer = dash_cooldown_time
 		change_state(State.MOVE)
 
 func knockback_state(delta):

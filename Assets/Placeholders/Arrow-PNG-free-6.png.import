@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce7bws1y4m4qa"
-path="res://.godot/imported/bullet-front-view-isolate-on-transparency-background-png.webp-f9c84db6312277058ad99b3443a58ba7.ctex"
+uid="uid://dyen4rrw0lfn1"
+path="res://.godot/imported/Arrow-PNG-free-6.png-d24a5b71e35506007e30c97a620f5936.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bullet-front-view-isolate-on-transparency-background-png.webp"
-dest_files=["res://.godot/imported/bullet-front-view-isolate-on-transparency-background-png.webp-f9c84db6312277058ad99b3443a58ba7.ctex"]
+source_file="res://Assets/Placeholders/Arrow-PNG-free-6.png"
+dest_files=["res://.godot/imported/Arrow-PNG-free-6.png-d24a5b71e35506007e30c97a620f5936.ctex"]
 
 [params]
 

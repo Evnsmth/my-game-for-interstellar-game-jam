@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsorumvwe6s5c"]
 
 [ext_resource type="Script" uid="uid://cceu6phoaxnkp" path="res://Scripts/bullet.gd" id="1_oduel"]
-[ext_resource type="Texture2D" uid="uid://ce7bws1y4m4qa" path="res://Assets/bullet-front-view-isolate-on-transparency-background-png.webp" id="1_xjght"]
+[ext_resource type="Texture2D" uid="uid://ce7bws1y4m4qa" path="res://Assets/Placeholders/bullet-front-view-isolate-on-transparency-background-png.webp" id="1_xjght"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oduel"]
 radius = 44.0
