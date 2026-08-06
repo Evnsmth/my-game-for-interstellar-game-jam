@@ -6,6 +6,10 @@ enum State {
 	ATTACK
 }
 
+#region Onready Variables
+@onready var aim_pivot: Node2D = $AimPivot
+#endregion
+
 #region Export Variables
 @export var movement_speed = 300.0
 @export var deceleration = 800.0
@@ -18,6 +22,9 @@ var current_state: State = State.MOVE
 var dash_timer = 0.0
 var dash_direction = Vector2.ZERO
 #endregion
+
+func _process(delta: float) -> void:
+	aim_pivot.look_at(get_global_mouse_position())
 
 
 func _physics_process(delta: float) -> void:
