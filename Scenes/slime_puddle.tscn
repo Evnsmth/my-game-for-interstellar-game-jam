@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_c0n7x"]
 radius = 15.033297
 
-[node name="SlimePuddle" type="Node2D" unique_id=217817962]
+[node name="SlimePuddle" type="Node2D" unique_id=217817962 groups=["puddle"]]
 script = ExtResource("1_fkhu1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1911111113]
