@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SlimeEffect" format=3 uid="uid://dpb50g7c5b6g5"]
 
 [ext_resource type="Script" uid="uid://c1n82txddblcq" path="res://Resources/Slime_Effects/slime_effect.gd" id="1_61oyr"]
-[ext_resource type="Texture2D" uid="uid://dkfc5dxxvoikq" path="res://Assets/Placeholders/noFilter.webp" id="1_rahre"]
+[ext_resource type="Texture2D" uid="uid://d0gdlephgm3u3" path="res://Assets/Enemies/opuddle.png" id="1_rahre"]
 
 [resource]
 script = ExtResource("1_61oyr")

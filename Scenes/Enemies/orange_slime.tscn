@@ -2,32 +2,30 @@
 
 [ext_resource type="Script" uid="uid://c3mn7oljhwk7s" path="res://Scripts/orange_slime.gd" id="1_qf47f"]
 [ext_resource type="Resource" uid="uid://dpb50g7c5b6g5" path="res://Resources/Slime_Effects/amber_effect.tres" id="2_evlxf"]
-[ext_resource type="Texture2D" uid="uid://db0xd4rv4yn1w" path="res://Assets/Placeholders/avclr3nsp.webp" id="3_oh8wm"]
+[ext_resource type="Texture2D" uid="uid://dgdw0fvjhtvw0" path="res://Assets/Enemies/oslime.png" id="3_qf47f"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2mup"]
-size = Vector2(402, 358)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4w25"]
-size = Vector2(404, 358)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qf47f"]
+size = Vector2(19, 30)
 
 [node name="OrangeSlime" type="CharacterBody2D" unique_id=1891310205]
-scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_qf47f")
 dropped_slime_effect = ExtResource("2_evlxf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=762775742]
-texture = ExtResource("3_oh8wm")
+texture = ExtResource("3_qf47f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=427094607]
-shape = SubResource("RectangleShape2D_n2mup")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1234055896]
+position = Vector2(0, 6.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_qf47f")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=455524939]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=157671956]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_v4w25")
-debug_color = Color(0.99043876, 0.09602062, 3.85046e-07, 0.41960785)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox" unique_id=1007139756]
+position = Vector2(0, 6.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_qf47f")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

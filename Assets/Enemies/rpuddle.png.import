@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buvuil6c05x5s"
-path="res://.godot/imported/slime.png-22c5e07ade692b8c51e5eea6ea18db48.ctex"
+uid="uid://b55m7w55oijsu"
+path="res://.godot/imported/rpuddle.png-264948609e0ba093a060ec6f4e2964da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player Assets/slime.png"
-dest_files=["res://.godot/imported/slime.png-22c5e07ade692b8c51e5eea6ea18db48.ctex"]
+source_file="res://Assets/Enemies/rpuddle.png"
+dest_files=["res://.godot/imported/rpuddle.png-264948609e0ba093a060ec6f4e2964da.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SlimeEffect" format=3 uid="uid://dyg2ibv5gk3cu"]
 
 [ext_resource type="Script" uid="uid://c1n82txddblcq" path="res://Resources/Slime_Effects/slime_effect.gd" id="1_boyhs"]
-[ext_resource type="Texture2D" uid="uid://c2xkrx52xjkcj" path="res://Assets/Placeholders/61509222-puddle-of-oil-icon-in-cartoon-style-isolated-on-white-background-petroleum-production-symbol.jpg" id="1_k1olv"]
+[ext_resource type="Texture2D" uid="uid://b7mnhjnq7i65e" path="res://Assets/Enemies/ppuddle.png" id="1_k1olv"]
 
 [resource]
 script = ExtResource("1_boyhs")

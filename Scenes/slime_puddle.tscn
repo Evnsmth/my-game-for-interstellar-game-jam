@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://c8e7csdttks14"]
 
 [ext_resource type="Script" uid="uid://dtnqcqy8e8nf2" path="res://Scripts/slime_puddle.gd" id="1_fkhu1"]
-[ext_resource type="Texture2D" uid="uid://dkfc5dxxvoikq" path="res://Assets/Placeholders/noFilter.webp" id="1_kvkms"]
 
 [node name="SlimePuddle" type="Node2D" unique_id=217817962]
 script = ExtResource("1_fkhu1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1911111113]
-scale = Vector2(0.65, 0.65)
-texture = ExtResource("1_kvkms")
