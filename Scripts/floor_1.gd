@@ -1,11 +1,14 @@
 extends Node2D
 
+signal remove_puddles
+
 @onready var enemy_spawner = $EnemySpawner
 @onready var trap_door = $Trapdoor
 
 var enemies_alive = 0
 var spawning_complete := false
 var floor_cleared = false
+var consumption_complete = false
 
 
 func _ready():
@@ -25,7 +28,7 @@ func _on_spawning_finished():
 	check_floor_clear()
 
 func check_floor_clear():
-	if spawning_complete and enemies_alive <= 0:
+	if spawning_complete and enemies_alive <= 0 and consumption_complete == true:
 		clear_floor()
 
 func clear_floor():
@@ -34,3 +37,8 @@ func clear_floor():
 	
 	floor_cleared = true
 	trap_door.open()
+
+func _on_puddle_consumed() -> void:
+	consumption_complete = true
+	remove_puddles.emit()
+	check_floor_clear()

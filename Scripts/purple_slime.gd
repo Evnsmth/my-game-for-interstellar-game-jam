@@ -30,13 +30,13 @@ func take_damage(amount : int):
 		die()
 
 func die():
-	var puddle : SlimePuddle = SLIME_PUDDLE_SCENE.instantiate()
-	
-	puddle.global_position = position
+	var puddle: SlimePuddle = SLIME_PUDDLE_SCENE.instantiate()
+
+	puddle.global_position = global_position
 	puddle.slime_effect = dropped_slime_effect
-	
+
 	get_tree().current_scene.add_child(puddle)
-	
+
 	died.emit()
 	queue_free()
 
