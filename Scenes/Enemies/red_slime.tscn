@@ -29,4 +29,13 @@ position = Vector2(0, 6.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_23pjn")
 
+[node name="TelegraphTimer" type="Timer" parent="." unique_id=1565413025]
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="." unique_id=2013367712]
+one_shot = true
+
+[node name="RecoveryTimer" type="Timer" parent="." unique_id=713854528]
+one_shot = true
+
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

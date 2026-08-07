@@ -4,8 +4,8 @@ signal died
 
 @onready var player: CharacterBody2D
 
-@export var speed = 100.0
-@export var max_health = 3
+@export var speed = 25.0
+@export var max_health = 70.0
 @export var dropped_slime_effect: SlimeEffect
 
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")

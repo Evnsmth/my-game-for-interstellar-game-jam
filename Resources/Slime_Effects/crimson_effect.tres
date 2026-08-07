@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_r208c")
 effect_name = "Crimson Slime"
-description = "Greatly increases damage, but slightly reduces movement speed. Consume (E)"
-damage_percent = 0.25
-fire_rate_percent = -0.2
+description = "Greatly increases movement speed, but slightly reduces damage. Consume (E)"
+damage_percent = -0.2
+movement_speed_percent = 0.3
 puddle_texture = ExtResource("1_vj76x")
 metadata/_custom_type_script = "uid://c1n82txddblcq"

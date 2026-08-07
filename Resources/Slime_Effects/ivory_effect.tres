@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SlimeEffect" format=3 uid="uid://dqa8xc3epcrih"]
+
+[ext_resource type="Texture2D" uid="uid://dgif0pewqfgln" path="res://Assets/Enemies/wpuddle.png" id="1_k2whd"]
+[ext_resource type="Script" uid="uid://c1n82txddblcq" path="res://Resources/Slime_Effects/slime_effect.gd" id="1_nt8lk"]
+
+[resource]
+script = ExtResource("1_nt8lk")
+effect_name = "Ivory Slime"
+description = "Greatly increases Health, but decreases movment speed. Consume (E)"
+movement_speed_percent = -0.2
+max_health_percent = 0.25
+puddle_texture = ExtResource("1_k2whd")
+metadata/_custom_type_script = "uid://c1n82txddblcq"

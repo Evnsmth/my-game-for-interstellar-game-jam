@@ -41,7 +41,5 @@ func die():
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	print("Hitbox touched: ", body.name)
-	
 	if body.has_method("get_hit"):
 		body.get_hit(1, global_position)
