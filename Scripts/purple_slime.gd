@@ -15,7 +15,7 @@ var current_health = max_health
 func _ready() -> void:
 	player  = get_tree().get_first_node_in_group("player")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
 
 	velocity = direction * speed
@@ -24,7 +24,6 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount : int):
 	current_health -= amount
-	print("Enemy Health", current_health)
 	
 	if current_health <= 0:
 		die()

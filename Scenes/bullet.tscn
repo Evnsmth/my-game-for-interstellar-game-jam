@@ -1,20 +1,19 @@
 [gd_scene format=3 uid="uid://bsorumvwe6s5c"]
 
 [ext_resource type="Script" uid="uid://cceu6phoaxnkp" path="res://Scripts/bullet.gd" id="1_oduel"]
-[ext_resource type="Texture2D" uid="uid://ce7bws1y4m4qa" path="res://Assets/Placeholders/bullet-front-view-isolate-on-transparency-background-png.webp" id="1_xjght"]
+[ext_resource type="Texture2D" uid="uid://b3lsvye08slud" path="res://Assets/Player Assets/bullet.png" id="2_oduel"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oduel"]
-radius = 44.0
-height = 310.0
+radius = 6.0
+height = 18.0
 
 [node name="Bullet" type="Area2D" unique_id=362697951]
-scale = Vector2(0.1, 0.1)
 collision_layer = 4
 collision_mask = 10
 script = ExtResource("1_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1303859549]
-texture = ExtResource("1_xjght")
+texture = ExtResource("2_oduel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1129708778]
 shape = SubResource("CapsuleShape2D_oduel")

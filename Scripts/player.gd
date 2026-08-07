@@ -21,7 +21,7 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 # Base Stats used for calculation
 @export_category("Base Stats")
 @export var base_max_health : float = 3
-@export var base_movement_speed : float = 300.0
+@export var base_movement_speed : float = 150.0
 @export var base_damage : float = 10.0
 @export var base_fire_rate : float = 1.0
 
@@ -38,11 +38,11 @@ var consumed_effects: Array[SlimeEffect] = []
 #endregion
 
 
-@export var deceleration = 800.0
-@export var dash_time = 0.15
+@export var deceleration = 1200.0
+@export var dash_time = 0.1
 @export var dash_cooldown_time = 0.4
-@export var dash_speed = 800.0
-@export var knockback_speed := 700.0
+@export var dash_speed = 400.0
+@export var knockback_speed := 300.0
 @export var knockback_time := 0.125
 
 var current_state: State = State.MOVE
@@ -184,10 +184,10 @@ func recalculate_stats() -> void:
 	fire_rate = base_fire_rate * (1.0 + fire_rate_percent)
 	max_health = base_max_health * (1.0 + max_health_percent)
 
-	print("Damage: ", damage)
-	print("Movement Speed: ", movement_speed)
-	print("Fire Rate: ", fire_rate)
-	print("Max Health: ", max_health)
+	#print("Damage: ", damage)
+	#print("Movement Speed: ", movement_speed)
+	#print("Fire Rate: ", fire_rate)
+	#print("Max Health: ", max_health)
 
 func apply_slime_effect(effect: SlimeEffect) -> void:
 	var old_max_health = max_health

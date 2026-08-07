@@ -1,20 +1,23 @@
 [gd_scene format=3 uid="uid://bbb3jf06lrerb"]
 
-[ext_resource type="Texture2D" uid="uid://df1eidht41tmq" path="res://Assets/Placeholders/trapdoorplaceholder.jpg" id="1_51rys"]
 [ext_resource type="Script" uid="uid://d2uqdb1axybfm" path="res://Scripts/trapdoor.gd" id="1_56n81"]
+[ext_resource type="Texture2D" uid="uid://c0i6s28pnrjyk" path="res://Assets/World/tdoor_closed.png" id="2_56n81"]
+[ext_resource type="Texture2D" uid="uid://eefcxouy6irm" path="res://Assets/World/tdoor_opem.png" id="3_02da5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmltg"]
-size = Vector2(102.53159, 121.51898)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02da5"]
 
 [node name="Trapdoor" type="Area2D" unique_id=1540619534]
-scale = Vector2(0.395, 0.395)
 script = ExtResource("1_56n81")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1427928633]
-texture = ExtResource("1_51rys")
+[node name="Closed" type="Sprite2D" parent="." unique_id=1427928633]
+texture = ExtResource("2_56n81")
+
+[node name="Open" type="Sprite2D" parent="." unique_id=847802465]
+visible = false
+texture = ExtResource("3_02da5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1210798294]
 position = Vector2(-0.00036621094, 0)
-scale = Vector2(4, 4)
-shape = SubResource("RectangleShape2D_kmltg")
+scale = Vector2(1.75, 1.75)
+shape = SubResource("RectangleShape2D_02da5")

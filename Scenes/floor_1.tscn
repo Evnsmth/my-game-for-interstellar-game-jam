@@ -1,8 +1,6 @@
-[gd_scene format=3 uid="uid://dhmpbln4xn5i4"]
+[gd_scene format=4 uid="uid://dhmpbln4xn5i4"]
 
 [ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor_1.gd" id="1_kmltg"]
-[ext_resource type="Texture2D" uid="uid://dyis2txt23his" path="res://Assets/Placeholders/backgrounddetailed1.png.preview.jpg" id="1_m8co2"]
-[ext_resource type="Texture2D" uid="uid://2fomb0i7y8fo" path="res://Assets/Placeholders/c1b7b81b52ce2dceffcfa747de0f937c.jpg" id="2_7r34j"]
 [ext_resource type="PackedScene" uid="uid://dmdh2cyi6uar0" path="res://Scenes/player.tscn" id="4_isvj2"]
 [ext_resource type="PackedScene" uid="uid://wjmhauuhgyl4" path="res://Scenes/enemy_spawner.tscn" id="4_uu0ng"]
 [ext_resource type="PackedScene" uid="uid://c4smou4w71n3i" path="res://Scenes/spawn_point.tscn" id="5_cqckl"]
@@ -11,97 +9,56 @@
 [ext_resource type="PackedScene" uid="uid://eew8g48typly" path="res://Scenes/Enemies/purple_slime.tscn" id="7_6f226"]
 [ext_resource type="PackedScene" uid="uid://dgeism0utilxi" path="res://Scenes/Enemies/red_slime.tscn" id="8_25q3e"]
 [ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/slime_info_panel.tscn" id="11_6f226"]
+[ext_resource type="Texture2D" uid="uid://blh6cfpkag4c2" path="res://Assets/World/floortilemap.png" id="11_25q3e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_isvj2"]
-size = Vector2(48, 501)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_excss"]
+texture = ExtResource("11_25q3e")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_pni4n"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 8
+sources/0 = SubResource("TileSetAtlasSource_excss")
 
 [node name="Floor1" type="Node2D" unique_id=395867149 groups=["floor"]]
 script = ExtResource("1_kmltg")
 
-[node name="FloorArt" type="Sprite2D" parent="." unique_id=990321932]
-scale = Vector2(1.25, 0.75)
-texture = ExtResource("1_m8co2")
-
-[node name="Walls" type="Node2D" parent="." unique_id=2067106781]
-scale = Vector2(1.25, 0.75)
-
-[node name="LWall" type="StaticBody2D" parent="Walls" unique_id=273008515]
-position = Vector2(-245, 0)
-scale = Vector2(0.25, 1)
-collision_layer = 8
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/LWall" unique_id=240166400]
-scale = Vector2(0.09205429, 1.2866324)
-texture = ExtResource("2_7r34j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LWall" unique_id=416071830]
-shape = SubResource("RectangleShape2D_isvj2")
-
-[node name="RWall" type="StaticBody2D" parent="Walls" unique_id=1091134468]
-position = Vector2(245, 0)
-scale = Vector2(0.25, 1)
-collision_layer = 8
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/RWall" unique_id=1458812199]
-scale = Vector2(0.09205429, 1.2866324)
-texture = ExtResource("2_7r34j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RWall" unique_id=407907907]
-shape = SubResource("RectangleShape2D_isvj2")
-
-[node name="TWall" type="StaticBody2D" parent="Walls" unique_id=1207139654]
-position = Vector2(0, -240)
-rotation = 1.5707964
-scale = Vector2(0.5, 1)
-collision_layer = 8
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/TWall" unique_id=340230968]
-scale = Vector2(0.09205429, 1.2866324)
-texture = ExtResource("2_7r34j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TWall" unique_id=695638610]
-shape = SubResource("RectangleShape2D_isvj2")
-
-[node name="BWall" type="StaticBody2D" parent="Walls" unique_id=1161692688]
-position = Vector2(0, 240)
-rotation = 1.5707964
-scale = Vector2(0.5, 1)
-collision_layer = 8
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/BWall" unique_id=1918610725]
-scale = Vector2(0.09205429, 1.2866324)
-texture = ExtResource("2_7r34j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BWall" unique_id=917447616]
-shape = SubResource("RectangleShape2D_isvj2")
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1284568027]
+tile_map_data = PackedByteArray("AAAFAPz/AAADAAAAAAD6//z/AAADAAAAAAD6/wMAAAADAAAAAAAFAAMAAAADAAAAAAAFAP3/AAACAAAAAAAFAP7/AAACAAAAAAAFAP//AAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAD6/wIAAAACAAAAADD6/wEAAAACAAAAADD6/wAAAAACAAAAADD6////AAACAAAAADD6//7/AAACAAAAADD6//3/AAACAAAAADD7//z/AAACAAEAAAD8//z/AAACAAEAAAD9//z/AAACAAEAAAD+//z/AAACAAEAAAD///z/AAACAAEAAAAAAPz/AAACAAEAAAABAPz/AAACAAEAAAACAPz/AAACAAEAAAADAPz/AAACAAEAAAAEAPz/AAACAAEAAAD7/wMAAAACAAEAADD8/wMAAAACAAEAADD9/wMAAAACAAEAADD+/wMAAAACAAEAADD//wMAAAACAAEAADAAAAMAAAACAAEAADABAAMAAAACAAEAADACAAMAAAACAAEAADADAAMAAAACAAEAADAEAAMAAAACAAEAADD7//3/AAAAAAEAAAD8//3/AAABAAAAAFD9//3/AAAAAAEAADD+//3/AAAAAAEAAFD///3/AAAAAAEAAGAAAP3/AAABAAEAAAABAP3/AAABAAEAAFACAP3/AAAAAAEAAGADAP3/AAABAAAAAFAEAP7/AAABAAEAAAADAP7/AAABAAEAAFACAP7/AAABAAAAADABAP7/AAABAAAAAGAAAP7/AAABAAEAADD///7/AAAAAAEAAGD+//7/AAAAAAEAAAD9//7/AAAAAAAAAGD8//7/AAABAAEAADD7//7/AAABAAEAAAD7////AAABAAAAAAD8////AAABAAEAAGD9////AAAAAAAAADD+////AAABAAAAAAD/////AAABAAAAAGAAAP//AAAAAAEAADABAP//AAAAAAAAAAACAP//AAAAAAEAAAADAP//AAAAAAAAAFAEAP3/AAABAAEAAGAEAP//AAAAAAAAAAAEAAAAAAABAAAAAFADAAAAAAAAAAAAAFACAAAAAAABAAAAAAABAAAAAAABAAEAAGAAAAAAAAAAAAEAADD//wAAAAABAAAAAFD+/wAAAAABAAAAAFD9/wAAAAABAAEAAFD8/wAAAAABAAAAAAD7/wAAAAABAAAAAAD7/wEAAAAAAAEAAAD8/wEAAAAAAAAAAFD9/wEAAAABAAEAAAD+/wEAAAABAAEAAAD//wEAAAAAAAEAADAAAAEAAAABAAEAADABAAEAAAAAAAEAAGACAAEAAAABAAEAAAADAAEAAAAAAAEAADAEAAEAAAAAAAEAAAAEAAIAAAAAAAEAAAADAAIAAAAAAAAAAGACAAIAAAABAAEAADABAAIAAAAAAAEAAFAAAAIAAAAAAAEAADD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAABAAEAAGD8/wIAAAABAAEAAFD7/wIAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_pni4n")
 
 [node name="EnemySpawner" parent="." unique_id=140305549 instance=ExtResource("4_uu0ng")]
-position = Vector2(-253, 136)
+position = Vector2(-251, 134)
 
 [node name="SpawnPoint" parent="EnemySpawner" unique_id=434222179 instance=ExtResource("5_cqckl")]
-position = Vector2(464, -1)
+position = Vector2(383, -70)
 enemy_scene = ExtResource("6_pni4n")
 
 [node name="SpawnPoint2" parent="EnemySpawner" unique_id=861856499 instance=ExtResource("5_cqckl")]
-position = Vector2(466, -264)
+position = Vector2(382, -199)
 enemy_scene = ExtResource("7_6f226")
 
 [node name="SpawnPoint3" parent="EnemySpawner" unique_id=351841288 instance=ExtResource("5_cqckl")]
-position = Vector2(-6, -276)
+position = Vector2(127, -198)
 enemy_scene = ExtResource("8_25q3e")
 
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("5_kmltg")]
-position = Vector2(-139, 117.000015)
-scale = Vector2(0.12, 0.12)
+position = Vector2(17, 17)
 
 [node name="Player" parent="." unique_id=1540911374 instance=ExtResource("4_isvj2")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=974809362]
 
