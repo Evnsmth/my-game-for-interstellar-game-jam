@@ -1,8 +1,22 @@
 [gd_scene format=3 uid="uid://c8e7csdttks14"]
 
 [ext_resource type="Script" uid="uid://dtnqcqy8e8nf2" path="res://Scripts/slime_puddle.gd" id="1_fkhu1"]
+[ext_resource type="Texture2D" uid="uid://wtd8swvt25sp" path="res://Assets/Enemies/bpuddle.png" id="2_fkhu1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0n7x"]
+radius = 15.033297
 
 [node name="SlimePuddle" type="Node2D" unique_id=217817962]
 script = ExtResource("1_fkhu1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1911111113]
+texture = ExtResource("2_fkhu1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=997485097]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=821088188]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_c0n7x")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

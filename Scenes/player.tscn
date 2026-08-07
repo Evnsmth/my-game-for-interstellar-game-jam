@@ -28,3 +28,6 @@ texture = ExtResource("3_vgqql")
 position = Vector2(0, 6.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_6t5aa")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=718421779]
+one_shot = true

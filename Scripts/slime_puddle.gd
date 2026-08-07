@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 
+var player_nearby: Node = null
 
 func _ready() -> void:
 	if slime_effect == null:
@@ -14,3 +15,24 @@ func _ready() -> void:
 	sprite.texture = slime_effect.puddle_texture
 
 	print("Spawned puddle containing: ", slime_effect.effect_name)
+
+func _process(delta: float) -> void:
+	if player_nearby != null and Input.is_action_just_pressed("consume"):
+		consume()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_nearby = body
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body == player_nearby:
+		player_nearby = null
+
+func consume():
+	player_nearby.apply_slime_effect(slime_effect)
+	
+	print("Consumed: ", slime_effect.effect_name)
+	
+	queue_free()

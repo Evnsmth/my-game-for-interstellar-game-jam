@@ -8,7 +8,7 @@ extends Resource
 
 @export_category("Stat Modifiers")
 @export var damage_percent: float = 0.0
-@export var move_speed_percent: float = 0.0
+@export var movement_speed_percent: float = 0.0
 @export var fire_rate_percent: float = 0.0
 @export var max_health_percent: float = 0.0
 

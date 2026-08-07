@@ -14,29 +14,49 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 
 #region Onready Variables
 @onready var aim_pivot: Node2D = $AimPivot
+@onready var shoot_timer: Timer = $ShootTimer
 #endregion
 
-#region Export Variables
-@export var max_health = 3
-@export var movement_speed = 300.0
+#region Stat Related Variables
+# Base Stats used for calculation
+@export_category("Base Stats")
+@export var base_max_health : float = 3
+@export var base_movement_speed : float = 300.0
+@export var base_damage : float = 10.0
+@export var base_fire_rate : float = 1.0
+
+# The stats used post stat calculation
+var movement_speed: float
+var damage: float
+var fire_rate: float
+var max_health: float
+
+var current_health : float
+
+# Stores all slime effects
+var consumed_effects: Array[SlimeEffect] = []
+#endregion
+
+
 @export var deceleration = 800.0
 @export var dash_time = 0.15
 @export var dash_cooldown_time = 0.4
 @export var dash_speed = 800.0
 @export var knockback_speed := 700.0
 @export var knockback_time := 0.125
-#endregion
 
-#region Member Variables
 var current_state: State = State.MOVE
-var current_health = max_health
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
 var can_dash = true
 var dash_direction = Vector2.ZERO
 var knockback_direction := Vector2.ZERO
 var knockback_timer := 0.0
-#endregion
+
+
+func _ready() -> void:
+	recalculate_stats()
+	current_health = max_health
 
 func _process(delta: float) -> void:
 	aim_pivot.look_at(get_global_mouse_position())
@@ -122,11 +142,19 @@ func dead_state(_delta):
 	pass
 
 func shoot():
+	if(not shoot_timer.is_stopped()):
+		return
+	
 	var bullet = BULLET_SCENE.instantiate()
+	bullet.damage = damage
+	
 	get_tree().current_scene.add_child(bullet)
+	
 	bullet.global_position = $AimPivot/BulletSpawn.global_position
 	bullet.direction = global_position.direction_to(get_global_mouse_position())
 	bullet.rotation = bullet.direction.angle() + deg_to_rad(90)
+	
+	shoot_timer.start(1.0 / fire_rate)
 
 func get_hit(amount : int, source_position : Vector2):
 	current_health -= amount
@@ -138,3 +166,36 @@ func get_hit(amount : int, source_position : Vector2):
 		knockback_direction = source_position.direction_to(global_position)
 		knockback_timer = knockback_time
 		change_state(State.KNOCKBACK)
+
+func recalculate_stats() -> void:
+	var damage_percent := 0.0
+	var movement_speed_percent := 0.0
+	var fire_rate_percent := 0.0
+	var max_health_percent := 0.0
+
+	for effect in consumed_effects:
+		damage_percent += effect.damage_percent
+		movement_speed_percent += effect.movement_speed_percent
+		fire_rate_percent += effect.fire_rate_percent
+		max_health_percent += effect.max_health_percent
+
+	damage = base_damage * (1.0 + damage_percent)
+	movement_speed = base_movement_speed * (1.0 + movement_speed_percent)
+	fire_rate = base_fire_rate * (1.0 + fire_rate_percent)
+	max_health = base_max_health * (1.0 + max_health_percent)
+
+	print("Damage: ", damage)
+	print("Movement Speed: ", movement_speed)
+	print("Fire Rate: ", fire_rate)
+	print("Max Health: ", max_health)
+
+func apply_slime_effect(effect: SlimeEffect) -> void:
+	var old_max_health = max_health
+	
+	consumed_effects.append(effect)
+	recalculate_stats()
+	
+	var health_change = max_health - old_max_health
+	current_health = health_change
+	
+	current_health = max(current_health, 1.0)

@@ -10,6 +10,7 @@ func _ready() -> void:
 func spawn_all_enemies() -> void:
 	await get_tree().process_frame
 	
+	# Spawns the chosen enemy at each given spawn point
 	for spawn_point in get_children():
 		if spawn_point.enemy_scene == null:
 			continue
