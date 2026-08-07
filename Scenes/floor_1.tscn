@@ -5,7 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://2fomb0i7y8fo" path="res://Assets/Placeholders/c1b7b81b52ce2dceffcfa747de0f937c.jpg" id="2_7r34j"]
 [ext_resource type="PackedScene" uid="uid://dmdh2cyi6uar0" path="res://Scenes/player.tscn" id="4_isvj2"]
 [ext_resource type="PackedScene" uid="uid://wjmhauuhgyl4" path="res://Scenes/enemy_spawner.tscn" id="4_uu0ng"]
+[ext_resource type="PackedScene" uid="uid://c4smou4w71n3i" path="res://Scenes/spawn_point.tscn" id="5_cqckl"]
 [ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="5_kmltg"]
+[ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="6_pni4n"]
+[ext_resource type="PackedScene" uid="uid://eew8g48typly" path="res://Scenes/Enemies/purple_slime.tscn" id="7_6f226"]
+[ext_resource type="PackedScene" uid="uid://dgeism0utilxi" path="res://Scenes/Enemies/red_slime.tscn" id="8_25q3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isvj2"]
 size = Vector2(48, 501)
@@ -77,14 +81,17 @@ shape = SubResource("RectangleShape2D_isvj2")
 [node name="EnemySpawner" parent="." unique_id=140305549 instance=ExtResource("4_uu0ng")]
 position = Vector2(-839, 357)
 
-[node name="Point1" type="Marker2D" parent="EnemySpawner" unique_id=1668181280]
-position = Vector2(105, -483)
+[node name="SpawnPoint" parent="EnemySpawner" unique_id=434222179 instance=ExtResource("5_cqckl")]
+position = Vector2(1462, -35)
+enemy_scene = ExtResource("6_pni4n")
 
-[node name="Point2" type="Marker2D" parent="EnemySpawner" unique_id=1810208599]
-position = Vector2(1106, -722)
+[node name="SpawnPoint2" parent="EnemySpawner" unique_id=861856499 instance=ExtResource("5_cqckl")]
+position = Vector2(1490, -667)
+enemy_scene = ExtResource("7_6f226")
 
-[node name="Point3" type="Marker2D" parent="EnemySpawner" unique_id=1016499318]
-position = Vector2(1332, -17)
+[node name="SpawnPoint3" parent="EnemySpawner" unique_id=351841288 instance=ExtResource("5_cqckl")]
+position = Vector2(75, -628)
+enemy_scene = ExtResource("8_25q3e")
 
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("5_kmltg")]
 position = Vector2(-605, 337)

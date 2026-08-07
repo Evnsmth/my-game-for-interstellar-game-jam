@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://eew8g48typly"]
+
+[ext_resource type="Texture2D" uid="uid://d055qbrdh370d" path="res://Assets/Placeholders/5c7467f2c9dc3c2d6edbf6b471bf14cf_t.jpeg" id="1_4yqhf"]
+[ext_resource type="Script" uid="uid://dwnhs08hscvey" path="res://Scripts/purple_slime.gd" id="1_krsyl"]
+[ext_resource type="Resource" uid="uid://dyg2ibv5gk3cu" path="res://Resources/Slime_Effects/violet_effect.tres" id="2_1aqnj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krsyl"]
+size = Vector2(341, 340)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sdck"]
+size = Vector2(340, 341)
+
+[node name="PurpleSlime" type="CharacterBody2D" unique_id=2105433658]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_krsyl")
+dropped_slime_effect = ExtResource("2_1aqnj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=13616952]
+texture = ExtResource("1_4yqhf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1779882506]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_krsyl")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=205442344]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=185170626]
+shape = SubResource("RectangleShape2D_4sdck")
+debug_color = Color(0.99043876, 0.09602062, 3.85046e-07, 0.41960785)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SlimeEffect" format=3 uid="uid://beqy4xubesh85"]
+
+[ext_resource type="Script" uid="uid://c1n82txddblcq" path="res://Resources/Slime_Effects/slime_effect.gd" id="1_r208c"]
+[ext_resource type="Texture2D" uid="uid://c5o13vu5lywjr" path="res://Assets/Placeholders/194994.png" id="1_vj76x"]
+
+[resource]
+script = ExtResource("1_r208c")
+effect_name = "Crimson Slime"
+description = "Greatly increases damage, but slightly reduces movement speed."
+damage_percent = 0.25
+move_speed_percent = -0.1
+puddle_texture = ExtResource("1_vj76x")
+metadata/_custom_type_script = "uid://c1n82txddblcq"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SlimeEffect" format=3 uid="uid://dpb50g7c5b6g5"]
+
+[ext_resource type="Script" uid="uid://c1n82txddblcq" path="res://Resources/Slime_Effects/slime_effect.gd" id="1_61oyr"]
+[ext_resource type="Texture2D" uid="uid://dkfc5dxxvoikq" path="res://Assets/Placeholders/noFilter.webp" id="1_rahre"]
+
+[resource]
+script = ExtResource("1_61oyr")
+effect_name = "Amber Slime"
+description = "Increases maximum health, but reduces movement speed."
+move_speed_percent = -0.1
+max_health_percent = 0.2
+puddle_texture = ExtResource("1_rahre")
+metadata/_custom_type_script = "uid://c1n82txddblcq"
