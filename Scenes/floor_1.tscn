@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="6_pni4n"]
 [ext_resource type="PackedScene" uid="uid://eew8g48typly" path="res://Scenes/Enemies/purple_slime.tscn" id="7_6f226"]
 [ext_resource type="PackedScene" uid="uid://dgeism0utilxi" path="res://Scenes/Enemies/red_slime.tscn" id="8_25q3e"]
+[ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/slime_info_panel.tscn" id="11_6f226"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isvj2"]
 size = Vector2(48, 501)
@@ -101,3 +102,7 @@ scale = Vector2(0.12, 0.12)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
 zoom = Vector2(1.5, 1.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=974809362]
+
+[node name="SlimeInfoPanel" parent="CanvasLayer" unique_id=1380804590 instance=ExtResource("11_6f226")]

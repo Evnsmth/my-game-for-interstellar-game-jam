@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_61oyr")
 effect_name = "Amber Slime"
-description = "Increases maximum health, but reduces movement speed."
+description = "Increases maximum health, but reduces movement speed. Consume (E)"
 movement_speed_percent = -0.3
 max_health_percent = 0.2
 puddle_texture = ExtResource("1_rahre")

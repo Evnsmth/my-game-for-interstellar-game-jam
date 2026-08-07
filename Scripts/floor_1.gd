@@ -8,6 +8,7 @@ signal remove_puddles
 var enemies_alive = 0
 var spawning_complete := false
 var floor_cleared = false
+var puddle_info_unlocked := false
 var consumption_complete = false
 
 
@@ -28,8 +29,11 @@ func _on_spawning_finished():
 	check_floor_clear()
 
 func check_floor_clear():
-	if spawning_complete and enemies_alive <= 0 and consumption_complete == true:
-		clear_floor()
+	if spawning_complete and enemies_alive <= 0:
+		puddle_info_unlocked = true
+
+		if consumption_complete:
+			clear_floor()
 
 func clear_floor():
 	if floor_cleared:

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bmk1h0i040p2b"]
+
+[ext_resource type="Script" uid="uid://cufja2pms03pp" path="res://Scripts/slime_info_panel.gd" id="1_07cel"]
+
+[node name="SlimeInfoPanel" type="PanelContainer" unique_id=1380804590 groups=["slime_info_ui"]]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+script = ExtResource("1_07cel")
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1415396800]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=78629675]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=286259978]
+layout_mode = 2

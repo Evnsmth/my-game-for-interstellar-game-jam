@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var floor = get_tree().get_first_node_in_group("floor")
+@onready var slime_info_ui = get_tree().get_first_node_in_group("slime_info_ui")
 
 @export var slime_effect: SlimeEffect
 @export var puddle_spacing: float = 25.0
@@ -26,6 +27,9 @@ func _ready() -> void:
 	find_free_position()
 
 func _process(_delta: float) -> void:
+	if not floor.puddle_info_unlocked:
+		return
+	
 	if player_nearby != null and Input.is_action_just_pressed("consume"):
 		consume()
 
@@ -33,11 +37,17 @@ func _process(_delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_nearby = body
+	
+	if floor.puddle_info_unlocked and slime_info_ui != null:
+		slime_info_ui.show_slime_info(slime_effect)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body == player_nearby:
 		player_nearby = null
+	
+		if  slime_info_ui != null:
+			slime_info_ui.hide_slime_info()
 
 func consume():
 	player_nearby.apply_slime_effect(slime_effect)
