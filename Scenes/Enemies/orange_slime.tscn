@@ -9,7 +9,7 @@ size = Vector2(19, 30)
 
 [node name="OrangeSlime" type="CharacterBody2D" unique_id=1891310205]
 collision_layer = 2
-collision_mask = 9
+collision_mask = 11
 script = ExtResource("1_qf47f")
 dropped_slime_effect = ExtResource("2_evlxf")
 
@@ -19,6 +19,7 @@ texture = ExtResource("3_qf47f")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1234055896]
 position = Vector2(0, 6.5)
 rotation = 1.5707964
+scale = Vector2(0.85, 0.85)
 shape = SubResource("RectangleShape2D_qf47f")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=455524939]
