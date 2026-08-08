@@ -12,8 +12,8 @@ const BULLET_SCENE = preload("res://Scenes/Enemies/enemy_purple_bullet.tscn")
 
 @export var speed = 100.0
 @export var max_health = 33.0
-@export var contact_damage = 5.0
-@export var bullet_damage = 12.0
+@export var contact_damage = 10.0
+@export var bullet_damage = 13.0
 @export var wall_clearance: float = 25.0
 @export var teleport_attempts: int = 20
 @export var minimum_player_distance: float = 60.0

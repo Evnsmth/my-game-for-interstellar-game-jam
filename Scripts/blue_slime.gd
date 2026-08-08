@@ -10,10 +10,10 @@ const BULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 @onready var recovery_timer: Timer = $RecoveryTimer
 @onready var reposition_timer: Timer = $RepositionTimer
 
-@export var speed = 100.0
-@export var max_health = 14.0
-@export var contact_damage = 5.0
-@export var bullet_damage = 15.0
+@export var speed = 60.0
+@export var max_health = 27.0
+@export var contact_damage = 10.0
+@export var bullet_damage = 12.0
 @export var fire_rate = 2.0
 @export var bullet_amount = 3
 @export var shooting_distance = 150.0

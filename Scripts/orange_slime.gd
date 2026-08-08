@@ -4,9 +4,9 @@ signal died
 
 @onready var player: CharacterBody2D
 
-@export var speed = 60.0
-@export var max_health = 21.0
-@export var contact_damage = 12.0
+@export var speed = 70.0
+@export var max_health = 25.0
+@export var contact_damage = 10.0
 @export var dropped_slime_effect: SlimeEffect
 
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
@@ -42,23 +42,23 @@ func create_random_amber_effect() -> SlimeEffect:
 
 	match buff_stat:
 		"damage":
-			random_effect.damage_percent = 0.10
+			random_effect.damage_percent = 0.18
 		"movement_speed":
-			random_effect.movement_speed_percent = 0.10
+			random_effect.movement_speed_percent = 0.18
 		"fire_rate":
-			random_effect.fire_rate_percent = 0.10
+			random_effect.fire_rate_percent = 0.18
 		"max_health":
-			random_effect.max_health_percent = 0.10
+			random_effect.max_health_percent = 0.18
 
 	match debuff_stat:
 		"damage":
-			random_effect.damage_percent = -0.05
+			random_effect.damage_percent = -0.08
 		"movement_speed":
-			random_effect.movement_speed_percent = -0.05
+			random_effect.movement_speed_percent = -0.08
 		"fire_rate":
-			random_effect.fire_rate_percent = -0.05
+			random_effect.fire_rate_percent = -0.08
 		"max_health":
-			random_effect.max_health_percent = -0.05
+			random_effect.max_health_percent = -0.08
 
 	return random_effect
 

@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_r208c")
 effect_name = "Crimson Slime"
-description = "Greatly increases Damage, but reduces Max Health. Consume (E)"
-damage_percent = 0.25
-max_health_percent = -0.2
+description = "Damage +30%, Max Health -15%. Consume (E)"
+damage_percent = 0.3
+max_health_percent = -0.15
 puddle_texture = ExtResource("1_vj76x")
 metadata/_custom_type_script = "uid://c1n82txddblcq"

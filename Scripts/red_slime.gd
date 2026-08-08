@@ -7,8 +7,8 @@ signal died
 @onready var dash_timer: Timer = $DashTimer
 @onready var recovery_timer: Timer = $RecoveryTimer
 
-@export var max_health = 25.0
-@export var contact_damage = 20.0
+@export var max_health = 30.0
+@export var contact_damage = 15.0
 @export var chase_speed := 70.0
 @export var dash_speed := 350.0
 @export var dash_range := 100.0

@@ -9,10 +9,11 @@ signal died
 @onready var explosion: Sprite2D = $Explosion
 
 
-@export var speed = 25.0
-@export var max_health = 70.0
+@export var speed = 30.0
+@export var max_health = 75.0
+@export var contact_damage = 10.0
 @export var explosion_time = 4.0
-@export var explosion_damage = 40.0
+@export var explosion_damage = 30.0
 @export var dropped_slime_effect: SlimeEffect
 
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
@@ -75,4 +76,4 @@ func die():
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):
-		body.get_hit(1, global_position)
+		body.get_hit(contact_damage, global_position)

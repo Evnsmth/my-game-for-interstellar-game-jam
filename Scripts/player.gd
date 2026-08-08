@@ -16,6 +16,7 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 @onready var aim_pivot: Node2D = $AimPivot
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var health_label: Label = $HealthLabel
+@onready var dash_label: Label = $DashLabel
 #endregion
 
 #region Stat Related Variables
@@ -69,6 +70,7 @@ func _physics_process(delta: float) -> void:
 		dash_cooldown_timer -= delta
 	else:
 		can_dash = true
+		dash_label.text = "Can Dash"
 
 	match current_state:
 		
@@ -120,6 +122,7 @@ func move_state(delta):
 
 func dash_state(delta):
 	can_dash = false
+	dash_label.text = "Cannot Dash"
 
 	velocity = dash_direction * dash_speed
 

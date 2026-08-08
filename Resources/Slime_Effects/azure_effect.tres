@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_rfonf")
 effect_name = "Azure Slime"
-description = "Greatly increases Fire Rate, but decreases Movement Speed. Consume (E)"
-movement_speed_percent = -0.2
-fire_rate_percent = 0.25
+description = "Fire Rate +30%, Movement Speed -17%. Consume (E)"
+movement_speed_percent = -0.17
+fire_rate_percent = 0.3
 puddle_texture = ExtResource("1_sa8s0")
 metadata/_custom_type_script = "uid://c1n82txddblcq"
