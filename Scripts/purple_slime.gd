@@ -30,11 +30,12 @@ enum State {
 	RECOVER
 }
 
-var state = State.TELEPORT
+var state = State.RECOVER
 
 var current_health = max_health
 
 func _ready() -> void:
+	recovery_timer.start(1.25)
 	player  = get_tree().get_first_node_in_group("player")
 
 func _physics_process(_delta: float) -> void:

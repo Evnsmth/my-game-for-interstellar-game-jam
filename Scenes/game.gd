@@ -24,7 +24,7 @@ func _ready() -> void:
 	var first_floor = load_floor(current_floor_index)
 	await get_tree().create_timer(0.5).timeout
 	await fade_from_black()
-	await get_tree().create_timer(1.25).timeout
+	await get_tree().create_timer(0.5).timeout
 	first_floor.start_floor()
 
 

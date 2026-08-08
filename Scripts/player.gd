@@ -42,7 +42,7 @@ var consumed_effects: Array[SlimeEffect] = []
 
 @export var deceleration = 1200.0
 @export var dash_time = 0.1
-@export var dash_cooldown_time = 0.4
+@export var dash_cooldown_time = 1.0
 @export var dash_speed = 400.0
 @export var knockback_speed := 300.0
 @export var knockback_time := 0.125
