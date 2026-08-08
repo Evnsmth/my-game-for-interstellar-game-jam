@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dhmpbln4xn5i4"]
 
-[ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor_1.gd" id="1_kmltg"]
+[ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor.gd" id="1_kmltg"]
 [ext_resource type="PackedScene" uid="uid://wjmhauuhgyl4" path="res://Scenes/enemy_spawner.tscn" id="4_uu0ng"]
 [ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="5_136ch"]
 [ext_resource type="PackedScene" uid="uid://c4smou4w71n3i" path="res://Scenes/spawn_point.tscn" id="5_cqckl"]
@@ -54,14 +54,6 @@ zoom = Vector2(2, 2)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=974809362]
 
 [node name="SlimeInfoPanel" parent="CanvasLayer" unique_id=1380804590 instance=ExtResource("11_6f226")]
-
-[node name="TrapdoorLabel" type="Label" parent="CanvasLayer" unique_id=2027209799]
-visible = false
-offset_left = -148.0
-offset_top = -19.0
-offset_right = -31.0
-offset_bottom = 4.0
-text = "Interact (Enter)"
 
 [node name="TeleportBounds" type="Node2D" parent="." unique_id=1135777183]
 

@@ -1,11 +1,12 @@
 [gd_scene format=4 uid="uid://b7b610ymgljhc"]
 
-[ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor_1.gd" id="1_svdex"]
+[ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor.gd" id="1_svdex"]
 [ext_resource type="Texture2D" uid="uid://blh6cfpkag4c2" path="res://Assets/World/floortilemap.png" id="2_i00et"]
 [ext_resource type="PackedScene" uid="uid://wjmhauuhgyl4" path="res://Scenes/enemy_spawner.tscn" id="3_4skuu"]
 [ext_resource type="PackedScene" uid="uid://c4smou4w71n3i" path="res://Scenes/spawn_point.tscn" id="4_k610y"]
 [ext_resource type="PackedScene" uid="uid://dgeism0utilxi" path="res://Scenes/Enemies/red_slime.tscn" id="5_svdex"]
 [ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="6_ckxo7"]
+[ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="6_i00et"]
 [ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/slime_info_panel.tscn" id="7_sf34u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_excss"]
@@ -41,8 +42,12 @@ position = Vector2(-251, 134)
 position = Vector2(383, -70)
 enemy_scene = ExtResource("5_svdex")
 
+[node name="SpawnPoint2" parent="EnemySpawner" unique_id=153783669 instance=ExtResource("4_k610y")]
+position = Vector2(315, -103)
+enemy_scene = ExtResource("6_i00et")
+
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("6_ckxo7")]
-position = Vector2(-17, 17)
+position = Vector2(-48, -49)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
 zoom = Vector2(2, 2)

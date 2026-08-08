@@ -15,6 +15,7 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 #region Onready Variables
 @onready var aim_pivot: Node2D = $AimPivot
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var health_label: Label = $HealthLabel
 #endregion
 
 #region Stat Related Variables
@@ -57,8 +58,9 @@ var knockback_timer := 0.0
 func _ready() -> void:
 	recalculate_stats()
 	current_health = max_health
+	health_label.text = str(current_health)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	aim_pivot.look_at(get_global_mouse_position())
 
 
@@ -130,12 +132,14 @@ func dash_state(delta):
 		change_state(State.MOVE)
 
 func knockback_state(delta):
+	set_collision_layer_value(1, false)
 	velocity = knockback_direction * knockback_speed
 	move_and_slide()
 
 	knockback_timer -= delta
 
 	if knockback_timer <= 0:
+		set_collision_layer_value(1, true)
 		change_state(State.MOVE)
 
 func dead_state(_delta):
@@ -158,7 +162,7 @@ func shoot():
 
 func get_hit(amount : int, source_position : Vector2):
 	current_health -= amount
-	print("Player Health", current_health)
+	health_label.text = str(current_health)
 	
 	if current_health <= 0:
 		change_state(State.DEAD)
@@ -183,6 +187,7 @@ func recalculate_stats() -> void:
 	movement_speed = base_movement_speed * (1.0 + movement_speed_percent)
 	fire_rate = base_fire_rate * (1.0 + fire_rate_percent)
 	max_health = base_max_health * (1.0 + max_health_percent)
+	
 
 	print("Damage: ", damage)
 	print("Movement Speed: ", movement_speed)
@@ -196,6 +201,7 @@ func apply_slime_effect(effect: SlimeEffect) -> void:
 	recalculate_stats()
 	
 	var health_change = max_health - old_max_health
-	current_health = health_change
+	current_health += health_change
 	
 	current_health = max(current_health, 1.0)
+	health_label.text = str(current_health)

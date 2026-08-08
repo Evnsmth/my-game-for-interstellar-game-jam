@@ -5,6 +5,9 @@ signal died
 @onready var player: CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 @onready var explosion_area: Area2D = $ExplosionArea
+@onready var regular: Sprite2D = $Regular
+@onready var explosion: Sprite2D = $Explosion
+
 
 @export var speed = 25.0
 @export var max_health = 70.0
@@ -25,6 +28,8 @@ var current_health = max_health
 
 func _ready() -> void:
 	player  = get_tree().get_first_node_in_group("player")
+	regular.show()
+	explosion.hide()
 
 func _physics_process(_delta: float) -> void:
 	match state:
@@ -46,6 +51,8 @@ func take_damage(amount : int):
 		state = State.EXPLODE
 
 func explode():
+	explosion.show()
+	regular.hide()
 	explosion_area.monitoring = true
 	var bodies = explosion_area.get_overlapping_bodies()
 

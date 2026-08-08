@@ -21,7 +21,12 @@ script = ExtResource("1_j3dui")
 explosion_time = 1.0
 dropped_slime_effect = ExtResource("2_acxhv")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=661152713]
+[node name="Regular" type="Sprite2D" parent="." unique_id=661152713]
+texture = ExtResource("1_u3yey")
+
+[node name="Explosion" type="Sprite2D" parent="." unique_id=1097407157]
+visible = false
+scale = Vector2(2, 2)
 texture = ExtResource("1_u3yey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=760849429]

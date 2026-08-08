@@ -85,3 +85,5 @@ func die():
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):
 		body.get_hit(contact_damage, global_position)
+		recovery_timer.start(recovery_time)
+		state = State.RECOVER

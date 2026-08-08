@@ -33,3 +33,10 @@ shape = SubResource("RectangleShape2D_6t5aa")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=718421779]
 one_shot = true
+
+[node name="HealthLabel" type="Label" parent="." unique_id=1325916302]
+offset_left = -14.0
+offset_top = -26.0
+offset_right = 14.0
+offset_bottom = -3.0
+text = "100"

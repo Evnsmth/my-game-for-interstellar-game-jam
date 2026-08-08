@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dea45jgdckauo" path="res://Scenes/game.gd" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://dmdh2cyi6uar0" path="res://Scenes/player.tscn" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://dajtpp5864cw2" path="res://Scripts/stats_menu.gd" id="3_wrm1d"]
 
 [node name="Game" type="Node2D" unique_id=949777512]
 script = ExtResource("1_wrm1d")
@@ -21,3 +22,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.003921569)
+
+[node name="StatsMenu" type="PanelContainer" parent="CanvasLayer" unique_id=1035282942]
+process_mode = 3
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_wrm1d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StatsMenu" unique_id=122725225]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1160560214]
+layout_mode = 2
+text = "Stats Menu"
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1084273624]
+layout_mode = 2
+
+[node name="DamageLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1857978480]
+layout_mode = 2
+
+[node name="FireRateLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=274041022]
+layout_mode = 2
+
+[node name="MovementLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1912528380]
+layout_mode = 2
+
+[node name="CloseTipLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1441807820]
+layout_mode = 2
+text = "Press Tab to close"

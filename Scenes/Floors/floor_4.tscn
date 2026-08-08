@@ -1,0 +1,72 @@
+[gd_scene format=4 uid="uid://b47gnwda05kt3"]
+
+[ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor.gd" id="1_0ktea"]
+[ext_resource type="Texture2D" uid="uid://blh6cfpkag4c2" path="res://Assets/World/floortilemap.png" id="2_d2sse"]
+[ext_resource type="PackedScene" uid="uid://wjmhauuhgyl4" path="res://Scenes/enemy_spawner.tscn" id="3_hrwku"]
+[ext_resource type="PackedScene" uid="uid://c4smou4w71n3i" path="res://Scenes/spawn_point.tscn" id="4_80r67"]
+[ext_resource type="PackedScene" uid="uid://cvpkc72py30h0" path="res://Scenes/Enemies/blue_slime.tscn" id="6_0ktea"]
+[ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="6_fik1m"]
+[ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="7_y34dr"]
+[ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/slime_info_panel.tscn" id="8_2ech0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_excss"]
+texture = ExtResource("2_d2sse")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_pni4n"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 8
+sources/0 = SubResource("TileSetAtlasSource_excss")
+
+[node name="Floor1" type="Node2D" unique_id=395867149 groups=["floor"]]
+script = ExtResource("1_0ktea")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1284568027]
+tile_map_data = PackedByteArray("AAAFAPz/AAADAAAAAAD6//z/AAADAAAAAAD6/wMAAAADAAAAAAAFAAMAAAADAAAAAAAFAP3/AAACAAAAAAAFAP7/AAACAAAAAAAFAP//AAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAD6/wIAAAACAAAAADD6/wEAAAACAAAAADD6/wAAAAACAAAAADD6////AAACAAAAADD6//7/AAACAAAAADD6//3/AAACAAAAADD7//z/AAACAAEAAAD8//z/AAACAAEAAAD9//z/AAACAAEAAAD+//z/AAACAAEAAAD///z/AAACAAEAAAAAAPz/AAACAAEAAAABAPz/AAACAAEAAAACAPz/AAACAAEAAAADAPz/AAACAAEAAAAEAPz/AAACAAEAAAD7/wMAAAACAAEAADD8/wMAAAACAAEAADD9/wMAAAACAAEAADD+/wMAAAACAAEAADD//wMAAAACAAEAADAAAAMAAAACAAEAADABAAMAAAACAAEAADACAAMAAAACAAEAADADAAMAAAACAAEAADAEAAMAAAACAAEAADD7//3/AAAAAAAAAFD8//3/AAABAAEAAFD9//3/AAABAAEAAFD+//3/AAAAAAEAAGD///3/AAABAAEAAFAAAP3/AAAAAAEAADABAP3/AAABAAEAAGACAP3/AAAAAAEAADADAP3/AAAAAAEAADAEAP7/AAABAAEAADADAP7/AAABAAEAAAACAP7/AAABAAEAAFABAP7/AAAAAAEAAGAAAP7/AAAAAAAAADD///7/AAAAAAAAAGD+//7/AAAAAAEAAGD9//7/AAABAAAAAGD8//7/AAABAAAAADD7//7/AAABAAEAAAD7////AAAAAAEAADD8////AAAAAAAAAAD9////AAABAAAAAGD+////AAAAAAAAAGD/////AAABAAEAAGAAAP//AAAAAAEAAGABAP//AAAAAAAAAGACAP//AAAAAAEAAGADAP//AAABAAAAAFAEAP3/AAABAAEAAGAEAP//AAAAAAEAAFAEAAAAAAAAAAEAAFADAAAAAAABAAEAAFACAAAAAAAAAAEAADABAAAAAAAAAAEAADAAAAAAAAABAAAAAGD//wAAAAAAAAAAAGD+/wAAAAABAAEAADD9/wAAAAABAAEAADD8/wAAAAABAAEAADD7/wAAAAABAAEAAAD7/wEAAAABAAEAAFD8/wEAAAABAAAAADD9/wEAAAAAAAEAADD+/wEAAAAAAAAAADD//wEAAAAAAAEAADAAAAEAAAAAAAEAADABAAEAAAABAAAAAFACAAEAAAAAAAAAAGADAAEAAAAAAAEAAGAEAAEAAAAAAAEAAAAEAAIAAAABAAEAAAADAAIAAAAAAAAAAFACAAIAAAABAAAAAFABAAIAAAAAAAAAAFAAAAIAAAAAAAEAAAD//wIAAAABAAAAAGD+/wIAAAAAAAAAAAD9/wIAAAABAAAAAGD8/wIAAAABAAEAAAD7/wIAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_pni4n")
+
+[node name="EnemySpawner" parent="." unique_id=140305549 instance=ExtResource("3_hrwku")]
+position = Vector2(-251, 134)
+
+[node name="SpawnPoint" parent="EnemySpawner" unique_id=434222179 instance=ExtResource("4_80r67")]
+position = Vector2(317, -134)
+enemy_scene = ExtResource("6_fik1m")
+
+[node name="SpawnPoint2" parent="EnemySpawner" unique_id=1386824761 instance=ExtResource("4_80r67")]
+position = Vector2(285, -163)
+enemy_scene = ExtResource("6_fik1m")
+
+[node name="SpawnPoint3" parent="EnemySpawner" unique_id=716461175 instance=ExtResource("4_80r67")]
+position = Vector2(331, -182)
+enemy_scene = ExtResource("6_0ktea")
+
+[node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("7_y34dr")]
+position = Vector2(-144, 16)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
+zoom = Vector2(2, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=974809362]
+
+[node name="SlimeInfoPanel" parent="CanvasLayer" unique_id=1380804590 instance=ExtResource("8_2ech0")]
+
+[node name="TeleportBounds" type="Node2D" parent="." unique_id=1135777183]
+
+[node name="TopLeft" type="Marker2D" parent="TeleportBounds" unique_id=1278917732 groups=["teleport_top_left"]]
+position = Vector2(-158, -93)
+
+[node name="Bottom Right" type="Marker2D" parent="TeleportBounds" unique_id=1571516716 groups=["teleport_bottom_right"]]
+position = Vector2(159, 95)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1277747106]
+position = Vector2(-129, 65)

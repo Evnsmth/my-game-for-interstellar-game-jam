@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_nt8lk")
 effect_name = "Ivory Slime"
-description = "Greatly increases Health, but decreases movment speed. Consume (E)"
-movement_speed_percent = -0.2
+description = "Greatly increases Max Health, but decreases Fire Rate. Consume (E)"
+fire_rate_percent = -0.2
 max_health_percent = 0.25
 puddle_texture = ExtResource("1_k2whd")
 metadata/_custom_type_script = "uid://c1n82txddblcq"
