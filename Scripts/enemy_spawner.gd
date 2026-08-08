@@ -4,10 +4,8 @@ signal enemy_spawned(enemy)
 signal spawning_finished
 
 
-func _ready() -> void:
-	await spawn_all_enemies()
 
-func spawn_all_enemies() -> void:
+func start_spawning() -> void:
 	await get_tree().process_frame
 	
 	# Spawns the chosen enemy at each given spawn point

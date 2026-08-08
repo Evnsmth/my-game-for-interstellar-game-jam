@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://wjmhauuhgyl4"]
 
 [ext_resource type="Script" uid="uid://df31ynlt6jbha" path="res://Scripts/enemy_spawner.gd" id="1_4l55s"]
-[ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="2_8h7h8"]
 
-[node name="EnemySpawner" type="Node2D" unique_id=140305549]
+[node name="EnemySpawner" type="Node2D" unique_id=140305549 groups=["enemy_spawner"]]
 script = ExtResource("1_4l55s")
-enemy_scene = ExtResource("2_8h7h8")

@@ -58,3 +58,6 @@ position = Vector2(-158, -93)
 
 [node name="Bottom Right" type="Marker2D" parent="TeleportBounds" unique_id=1571516716 groups=["teleport_bottom_right"]]
 position = Vector2(159, 95)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1277747106]
+position = Vector2(-127, -64)

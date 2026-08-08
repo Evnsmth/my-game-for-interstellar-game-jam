@@ -47,3 +47,6 @@ func _on_puddle_consumed() -> void:
 	consumption_complete = true
 	remove_puddles.emit()
 	check_floor_clear()
+
+func start_floor() -> void:
+	enemy_spawner.start_spawning()

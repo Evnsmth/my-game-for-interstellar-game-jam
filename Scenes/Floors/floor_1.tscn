@@ -46,7 +46,7 @@ position = Vector2(124, -199)
 enemy_scene = ExtResource("5_136ch")
 
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("5_kmltg")]
-position = Vector2(17, 17)
+position = Vector2(-112, -47)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
 zoom = Vector2(2, 2)
@@ -55,6 +55,14 @@ zoom = Vector2(2, 2)
 
 [node name="SlimeInfoPanel" parent="CanvasLayer" unique_id=1380804590 instance=ExtResource("11_6f226")]
 
+[node name="TrapdoorLabel" type="Label" parent="CanvasLayer" unique_id=2027209799]
+visible = false
+offset_left = -148.0
+offset_top = -19.0
+offset_right = -31.0
+offset_bottom = 4.0
+text = "Interact (Enter)"
+
 [node name="TeleportBounds" type="Node2D" parent="." unique_id=1135777183]
 
 [node name="TopLeft" type="Marker2D" parent="TeleportBounds" unique_id=1278917732 groups=["teleport_top_left"]]
@@ -62,3 +70,5 @@ position = Vector2(-158, -93)
 
 [node name="Bottom Right" type="Marker2D" parent="TeleportBounds" unique_id=1571516716 groups=["teleport_bottom_right"]]
 position = Vector2(159, 95)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1351723020]

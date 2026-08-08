@@ -1,8 +1,13 @@
 extends Node2D
 
 @onready var floor_container = $FloorContainer
+@onready var fade_rect: ColorRect = $CanvasLayer/FadeRect
+@onready var enemy_spawner = $EnemySpawner
+@onready var player: CharacterBody2D = $Player
+
 
 var current_floor_index := 0
+var new_floor
 
 var floors = [
 	preload("res://Scenes/Floors/floor_1.tscn"),
@@ -11,28 +16,60 @@ var floors = [
 
 
 func _ready() -> void:
-	load_floor(current_floor_index)
+	fade_rect.color.a = 1.0
+	var first_floor = load_floor(current_floor_index)
+	await get_tree().create_timer(0.5).timeout
+	await fade_from_black()
+	await get_tree().create_timer(1.25).timeout
+	first_floor.start_floor()
 
 
-func load_floor(index: int) -> void:
-	# Make sure we actually have another floor.
+func load_floor(index: int):
 	if index >= floors.size():
-		return
+		return null
 
-	# Remove the current floor.
 	for child in floor_container.get_children():
 		child.queue_free()
 
-	# Create the new floor.
-	var new_floor = floors[index].instantiate()
-	floor_container.add_child(new_floor)
+	var next_floor = floors[index].instantiate()
+	floor_container.add_child(next_floor)
 
-	# Find THIS floor's trapdoor.
-	var trapdoor = new_floor.get_node("Trapdoor")
+	var player_spawn = next_floor.get_node("PlayerSpawn")
+	player.global_position = player_spawn.global_position
+	player.velocity = Vector2.ZERO
 
-	# Listen to THIS trapdoor.
+	var trapdoor = next_floor.get_node("Trapdoor")
 	trapdoor.trapdoor_entered.connect(_on_trapdoor_entered)
 
+	return next_floor
+
 func _on_trapdoor_entered() -> void:
+	transition_to_next_floor()
+
+func transition_to_next_floor() -> void:
+	await fade_to_black()
+
 	current_floor_index += 1
-	load_floor(current_floor_index)
+
+	var next_floor = load_floor(current_floor_index)
+
+	if next_floor == null:
+		return
+
+	await get_tree().create_timer(0.5).timeout
+
+	await fade_from_black()
+
+	await get_tree().create_timer(1.25).timeout
+
+	next_floor.start_floor()
+
+func fade_to_black() -> void:
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "color:a", 1.0, 0.5)
+	await tween.finished
+
+func fade_from_black() -> void:
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "color:a", 0.0, 0.5)
+	await tween.finished
