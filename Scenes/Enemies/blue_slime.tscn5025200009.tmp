@@ -41,7 +41,4 @@ one_shot = true
 [node name="RecoveryTimer" type="Timer" parent="." unique_id=298148196]
 one_shot = true
 
-[node name="RepositionTimer" type="Timer" parent="." unique_id=482227754]
-one_shot = true
-
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

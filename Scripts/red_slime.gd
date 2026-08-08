@@ -7,7 +7,8 @@ signal died
 @onready var dash_timer: Timer = $DashTimer
 @onready var recovery_timer: Timer = $RecoveryTimer
 
-@export var max_health = 25
+@export var max_health = 25.0
+@export var contact_damage = 20.0
 @export var chase_speed := 70.0
 @export var dash_speed := 350.0
 @export var dash_range := 100.0
@@ -83,4 +84,4 @@ func die():
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):
-		body.get_hit(1, global_position)
+		body.get_hit(contact_damage, global_position)

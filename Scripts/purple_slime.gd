@@ -6,6 +6,7 @@ signal died
 
 @export var speed = 100.0
 @export var max_health = 3
+@export var contact_damage = 5.0
 @export var dropped_slime_effect: SlimeEffect
 
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
@@ -42,4 +43,4 @@ func die():
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):
-		body.get_hit(1, global_position)
+		body.get_hit(contact_damage, global_position)

@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_61oyr")
 effect_name = "Amber Slime"
+description = "Gives a random stat +10%, while giving a different random stat -5%"
 puddle_texture = ExtResource("1_rahre")
 metadata/_custom_type_script = "uid://c1n82txddblcq"

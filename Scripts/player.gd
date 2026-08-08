@@ -20,7 +20,7 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 #region Stat Related Variables
 # Base Stats used for calculation
 @export_category("Base Stats")
-@export var base_max_health : float = 3
+@export var base_max_health : float = 100.0
 @export var base_movement_speed : float = 150.0
 @export var base_damage : float = 10.0
 @export var base_fire_rate : float = 1.0
@@ -184,10 +184,10 @@ func recalculate_stats() -> void:
 	fire_rate = base_fire_rate * (1.0 + fire_rate_percent)
 	max_health = base_max_health * (1.0 + max_health_percent)
 
-	#print("Damage: ", damage)
-	#print("Movement Speed: ", movement_speed)
-	#print("Fire Rate: ", fire_rate)
-	#print("Max Health: ", max_health)
+	print("Damage: ", damage)
+	print("Movement Speed: ", movement_speed)
+	print("Fire Rate: ", fire_rate)
+	print("Max Health: ", max_health)
 
 func apply_slime_effect(effect: SlimeEffect) -> void:
 	var old_max_health = max_health
