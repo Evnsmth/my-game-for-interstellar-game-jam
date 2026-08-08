@@ -30,6 +30,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_u3yey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=760849429]
+visible = false
 position = Vector2(3.1144367e-08, 5.7875)
 rotation = 1.5707964
 scale = Vector2(0.85, 0.85)
@@ -38,11 +39,13 @@ shape = SubResource("RectangleShape2D_j3dui")
 [node name="HitBox" type="Area2D" parent="." unique_id=422802859]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=2027321502]
+visible = false
 position = Vector2(5.9604645e-08, 5.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_acxhv")
 
 [node name="ExplosionArea" type="Area2D" parent="." unique_id=1626237701]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea" unique_id=1539124074]
 position = Vector2(0, 5.5)

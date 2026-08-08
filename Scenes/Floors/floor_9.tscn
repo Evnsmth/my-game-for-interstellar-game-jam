@@ -1,0 +1,81 @@
+[gd_scene format=4 uid="uid://bww2c2uqb5sep"]
+
+[ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor.gd" id="1_a6e3c"]
+[ext_resource type="Texture2D" uid="uid://blh6cfpkag4c2" path="res://Assets/World/floortilemap.png" id="2_n70kp"]
+[ext_resource type="PackedScene" uid="uid://wjmhauuhgyl4" path="res://Scenes/enemy_spawner.tscn" id="3_ji6qm"]
+[ext_resource type="PackedScene" uid="uid://c4smou4w71n3i" path="res://Scenes/spawn_point.tscn" id="4_i2qlc"]
+[ext_resource type="PackedScene" uid="uid://xbceltmeohq0" path="res://Scenes/Enemies/white_slime.tscn" id="5_7dedq"]
+[ext_resource type="PackedScene" uid="uid://cvpkc72py30h0" path="res://Scenes/Enemies/blue_slime.tscn" id="5_hflv5"]
+[ext_resource type="PackedScene" uid="uid://dgeism0utilxi" path="res://Scenes/Enemies/red_slime.tscn" id="7_lcbu5"]
+[ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="9_8q1s7"]
+[ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/slime_info_panel.tscn" id="10_cw3ut"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_excss"]
+texture = ExtResource("2_n70kp")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_pni4n"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 8
+sources/0 = SubResource("TileSetAtlasSource_excss")
+
+[node name="Floor1" type="Node2D" unique_id=395867149 groups=["floor"]]
+script = ExtResource("1_a6e3c")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1284568027]
+tile_map_data = PackedByteArray("AAAFAPz/AAAAAAAAAFD6//z/AAAAAAAAAAD6/wMAAAAAAAAAAAAFAAMAAAABAAAAAFAFAP3/AAABAAAAAFAFAP7/AAAAAAEAAFAFAP//AAAAAAEAAFAFAAAAAAABAAEAAGAFAAEAAAAAAAAAAFAFAAIAAAABAAAAAGD6/wIAAAABAAAAADD6/wEAAAAAAAAAADD6/wAAAAAAAAEAAFD6////AAAAAAAAAFD6//7/AAABAAEAAFD6//3/AAAAAAAAAFD7//z/AAAAAAAAAGD8//z/AAAAAAAAAGD9//z/AAABAAAAAGD+//z/AAAAAAEAAGD///z/AAAAAAAAAFAAAPz/AAAAAAEAAGABAPz/AAAAAAEAAAACAPz/AAABAAEAAFADAPz/AAAAAAAAAAAEAPz/AAAAAAEAAFD7/wMAAAAAAAAAAAD8/wMAAAABAAAAAFD9/wMAAAABAAEAAAD+/wMAAAAAAAAAAGD//wMAAAAAAAAAAGAAAAMAAAAAAAEAAGABAAMAAAABAAAAAGACAAMAAAABAAAAAGADAAMAAAABAAEAAGAEAAMAAAAAAAEAAFD7//3/AAAAAAEAAFD8//3/AAABAAAAAAD9//3/AAAAAAEAAAD+//3/AAABAAEAADD///3/AAAAAAAAADAAAP3/AAABAAAAADABAP3/AAABAAAAADACAP3/AAABAAAAADADAP3/AAABAAAAAFAEAP7/AAAAAAEAADADAP7/AAABAAAAAFACAP7/AAABAAEAAFABAP7/AAAAAAEAAFAAAP7/AAAAAAEAADD///7/AAABAAEAADD+//7/AAABAAAAADD9//7/AAABAAAAADD8//7/AAABAAEAADD7//7/AAAAAAEAAGD7////AAABAAAAADD8////AAABAAEAADD9////AAABAAAAADD+////AAABAAAAADD/////AAAAAAEAADAAAP//AAABAAEAAFABAP//AAAAAAEAADACAP//AAAAAAAAAGADAP//AAABAAEAAGAEAP3/AAAAAAEAADAEAP//AAAAAAEAAFAEAAAAAAAAAAAAADADAAAAAAABAAEAAGACAAAAAAAAAAAAAGABAAAAAAABAAEAAGAAAAAAAAAAAAEAAFD//wAAAAABAAEAAGD+/wAAAAABAAAAAAD9/wAAAAABAAEAAFD8/wAAAAABAAEAADD7/wAAAAABAAEAADD7/wEAAAAAAAEAADD8/wEAAAABAAEAAFD9/wEAAAAAAAAAAGD+/wEAAAABAAAAAGD//wEAAAAAAAEAAAAAAAEAAAAAAAEAAGABAAEAAAABAAEAADACAAEAAAAAAAEAADADAAEAAAAAAAAAAFAEAAEAAAABAAEAADAEAAIAAAABAAAAAGADAAIAAAABAAEAAFACAAIAAAABAAAAAGABAAIAAAABAAAAAGAAAAIAAAABAAEAAFD//wIAAAAAAAEAAGD+/wIAAAAAAAAAAGD9/wIAAAAAAAEAAGD8/wIAAAAAAAEAAGD7/wIAAAABAAAAAAD5//z/AAAAAAEAAAD5//3/AAAAAAEAAFD5//7/AAABAAAAAAD5////AAAAAAEAAFD5/wAAAAAAAAEAAFD5/wEAAAABAAEAAAD5/wIAAAAAAAAAAFD5/wMAAAAAAAEAAAAGAAMAAAAAAAEAAAAGAAIAAAAAAAEAAAAGAP7/AAAAAAEAAAAGAP3/AAABAAAAAFAGAAEAAAABAAAAAFAGAAAAAAABAAEAAFAGAPz/AAABAAAAAFAGAP//AAABAAEAAFAHAPv/AAADAAAAAAD4//v/AAADAAAAAAD4/wQAAAADAAAAAAAHAAQAAAADAAAAAAAHAPz/AAACAAAAAAAHAP3/AAACAAAAAAAHAP7/AAACAAAAAAAHAP//AAACAAAAAAAHAAAAAAACAAAAAAAHAAEAAAACAAAAAAAHAAIAAAACAAAAAAAHAAMAAAACAAAAAAD4//z/AAACAAAAADD4//3/AAACAAAAADD4//7/AAACAAAAADD4////AAACAAAAADD4/wAAAAACAAAAADD4/wEAAAACAAAAADD4/wIAAAACAAAAADD4/wMAAAACAAAAADD5//v/AAACAAEAAAD6//v/AAACAAEAAAD7//v/AAACAAEAAAD8//v/AAACAAEAAAD9//v/AAACAAEAAAD+//v/AAACAAEAAAD///v/AAACAAEAAAAAAPv/AAACAAEAAAABAPv/AAACAAEAAAACAPv/AAACAAEAAAADAPv/AAACAAEAAAAEAPv/AAACAAEAAAAFAPv/AAACAAEAAAAGAPv/AAACAAEAAAD5/wQAAAACAAEAADD6/wQAAAACAAEAADD7/wQAAAACAAEAADD8/wQAAAACAAEAADD9/wQAAAACAAEAADD+/wQAAAACAAEAADD//wQAAAACAAEAADAAAAQAAAACAAEAADABAAQAAAACAAEAADACAAQAAAACAAEAADADAAQAAAACAAEAADAEAAQAAAACAAEAADAFAAQAAAACAAEAADAGAAQAAAACAAEAADA=")
+tile_set = SubResource("TileSet_pni4n")
+
+[node name="EnemySpawner" parent="." unique_id=140305549 instance=ExtResource("3_ji6qm")]
+position = Vector2(-251, 134)
+
+[node name="SpawnPoint" parent="EnemySpawner" unique_id=434222179 instance=ExtResource("4_i2qlc")]
+position = Vector2(251, -37)
+enemy_scene = ExtResource("5_7dedq")
+
+[node name="SpawnPoint2" parent="EnemySpawner" unique_id=1386824761 instance=ExtResource("4_i2qlc")]
+position = Vector2(411, -70)
+enemy_scene = ExtResource("5_hflv5")
+
+[node name="SpawnPoint3" parent="EnemySpawner" unique_id=2115037382 instance=ExtResource("4_i2qlc")]
+position = Vector2(90, -70)
+enemy_scene = ExtResource("5_hflv5")
+
+[node name="SpawnPoint4" parent="EnemySpawner" unique_id=510005360 instance=ExtResource("4_i2qlc")]
+position = Vector2(444, -133)
+enemy_scene = ExtResource("7_lcbu5")
+
+[node name="SpawnPoint5" parent="EnemySpawner" unique_id=1057101340 instance=ExtResource("4_i2qlc")]
+position = Vector2(59, -131)
+enemy_scene = ExtResource("7_lcbu5")
+
+[node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("9_8q1s7")]
+position = Vector2(-145, 48)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
+zoom = Vector2(2, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=974809362]
+
+[node name="SlimeInfoPanel" parent="CanvasLayer" unique_id=1380804590 instance=ExtResource("10_cw3ut")]
+
+[node name="TeleportBounds" type="Node2D" parent="." unique_id=1135777183]
+
+[node name="TopLeft" type="Marker2D" parent="TeleportBounds" unique_id=1278917732 groups=["teleport_top_left"]]
+position = Vector2(-194, -93)
+
+[node name="Bottom Right" type="Marker2D" parent="TeleportBounds" unique_id=1571516716 groups=["teleport_bottom_right"]]
+position = Vector2(193, 97)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1277747106]
+position = Vector2(1, -66)

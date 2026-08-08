@@ -51,7 +51,7 @@ position = Vector2(160, -136)
 enemy_scene = ExtResource("5_hnxyq")
 
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("7_4ro51")]
-position = Vector2(-144, 16)
+position = Vector2(144, 80)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
 zoom = Vector2(2, 2)

@@ -20,12 +20,14 @@ dropped_slime_effect = ExtResource("2_ojb6y")
 texture = ExtResource("2_mdk41")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1756272789]
+visible = false
 position = Vector2(0, 6.5)
 rotation = 1.5707964
 scale = Vector2(0.85, 0.85)
 shape = SubResource("RectangleShape2D_ojb6y")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=705091768]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1011282893]
 position = Vector2(0, 6.5)

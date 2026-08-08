@@ -124,7 +124,7 @@ func dash_state(delta):
 	can_dash = false
 	dash_label.text = "Cannot Dash"
 
-	velocity = dash_direction * dash_speed
+	velocity = dash_direction * (dash_speed * (movement_speed / base_movement_speed))
 
 	move_and_slide()
 
