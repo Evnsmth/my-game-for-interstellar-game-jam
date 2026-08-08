@@ -15,6 +15,7 @@ var consumption_complete = false
 func _ready():
 	enemy_spawner.enemy_spawned.connect(_on_enemy_spawned)
 	enemy_spawner.spawning_finished.connect(_on_spawning_finished)
+	enemy_spawner.start_spawning()
 
 
 func _on_enemy_spawned(enemy):
@@ -49,4 +50,7 @@ func _on_puddle_consumed() -> void:
 	check_floor_clear()
 
 func start_floor() -> void:
-	enemy_spawner.start_spawning()
+	var enemies = get_tree().get_nodes_in_group("enemy")
+
+	for enemy in enemies:
+		enemy.process_mode = Node.PROCESS_MODE_PAUSABLE

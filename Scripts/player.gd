@@ -48,6 +48,7 @@ var consumed_effects: Array[SlimeEffect] = []
 @export var knockback_time := 0.125
 
 var current_state: State = State.MOVE
+var can_control := true
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
 var can_dash = true
@@ -97,6 +98,10 @@ func change_state(new_state):
 		print("You died")
 
 func move_state(delta):
+	if not can_control:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_vector("left", "right","up","down")

@@ -10,9 +10,9 @@ signal died
 @export var max_health = 30.0
 @export var contact_damage = 15.0
 @export var chase_speed := 70.0
-@export var dash_speed := 350.0
+@export var dash_speed := 300.0
 @export var dash_range := 100.0
-@export var telegraph_time := 0.4
+@export var telegraph_time := 0.5
 @export var dash_duration := 0.3
 @export var recovery_time := 0.6
 @export var dropped_slime_effect: SlimeEffect

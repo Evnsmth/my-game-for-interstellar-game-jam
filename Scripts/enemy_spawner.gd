@@ -14,11 +14,12 @@ func start_spawning() -> void:
 			continue
 		
 		var enemy = spawn_point.enemy_scene.instantiate()
+		enemy.add_to_group("enemy")
 		
 		get_parent().add_child(enemy)
 		enemy.global_position = spawn_point.global_position
 
+		enemy.process_mode = Node.PROCESS_MODE_DISABLED
 		enemy_spawned.emit(enemy)
-		
-	
+
 	spawning_finished.emit()

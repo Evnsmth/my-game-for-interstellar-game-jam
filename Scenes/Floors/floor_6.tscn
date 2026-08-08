@@ -43,11 +43,11 @@ position = Vector2(123, -197)
 enemy_scene = ExtResource("5_iemsn")
 
 [node name="SpawnPoint2" parent="EnemySpawner" unique_id=1386824761 instance=ExtResource("4_0fw7r")]
-position = Vector2(123, -67)
-enemy_scene = ExtResource("5_iemsn")
+position = Vector2(156, -103)
+enemy_scene = ExtResource("5_hnxyq")
 
 [node name="SpawnPoint3" parent="EnemySpawner" unique_id=2115037382 instance=ExtResource("4_0fw7r")]
-position = Vector2(160, -136)
+position = Vector2(285, -198)
 enemy_scene = ExtResource("5_hnxyq")
 
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("7_4ro51")]
