@@ -7,6 +7,7 @@ signal trapdoor_entered
 
 var player_ready: bool = false
 
+
 func close() -> void:
 	close_sprite.show()
 	open_sprite.hide()
