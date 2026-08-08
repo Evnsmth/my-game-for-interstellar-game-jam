@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_boyhs")
 effect_name = "Violet Slime"
+description = "Greatly increases Damage, but decreases Fire Rate. Consume (E)"
+damage_percent = 0.25
+fire_rate_percent = -0.15
 puddle_texture = ExtResource("1_k1olv")
 metadata/_custom_type_script = "uid://c1n82txddblcq"

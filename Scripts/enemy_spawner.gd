@@ -22,6 +22,5 @@ func spawn_all_enemies() -> void:
 
 		enemy_spawned.emit(enemy)
 		
-		await get_tree().create_timer(1.0).timeout
 	
 	spawning_finished.emit()

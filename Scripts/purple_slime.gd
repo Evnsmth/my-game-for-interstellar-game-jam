@@ -2,14 +2,35 @@ extends CharacterBody2D
 
 signal died
 
+const BULLET_SCENE = preload("res://Scenes/Enemies/enemy_purple_bullet.tscn")
+
 @onready var player: CharacterBody2D
+@onready var top_left = get_tree().get_first_node_in_group("teleport_top_left")
+@onready var bottom_right = get_tree().get_first_node_in_group("teleport_bottom_right")
+@onready var telegraph_timer: Timer = $TelegraphTimer
+@onready var recovery_timer: Timer = $RecoveryTimer
 
 @export var speed = 100.0
-@export var max_health = 3
+@export var max_health = 33.0
 @export var contact_damage = 5.0
+@export var bullet_damage = 12.0
+@export var wall_clearance: float = 25.0
+@export var teleport_attempts: int = 20
+@export var minimum_player_distance: float = 60.0
+@export var telegraph_time: float = 0.3
+@export var recovery_time: float = 2.5
 @export var dropped_slime_effect: SlimeEffect
 
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
+
+enum State {
+	TELEPORT,
+	TELEGRAPH,
+	SHOOT,
+	RECOVER
+}
+
+var state = State.TELEPORT
 
 var current_health = max_health
 
@@ -17,11 +38,106 @@ func _ready() -> void:
 	player  = get_tree().get_first_node_in_group("player")
 
 func _physics_process(_delta: float) -> void:
-	var direction = global_position.direction_to(player.global_position)
+	match state:
+		State.TELEPORT:
+			global_position = choose_teleport_position()
+			telegraph_timer.start(telegraph_time)
+			state = State.TELEGRAPH
+		
+		State.TELEGRAPH:
+			velocity = Vector2.ZERO
+			if(telegraph_timer.time_left <= 0):
+				state = State.SHOOT
+		
+		State.SHOOT:
+			shoot_cardinals()
+			shoot_diagonals()
+			recovery_timer.start(recovery_time)
+			state = State.RECOVER
+		
+		State.RECOVER:
+			velocity = Vector2.ZERO
+			if(recovery_timer.time_left <= 0):
+				state = State.TELEPORT
 
-	velocity = direction * speed
+func choose_teleport_position() -> Vector2:
+	for attempt in teleport_attempts:
+		var random_angle = randf_range(0.0, TAU)
+		var random_distance = randf_range(88.0,150)
+		
+		var candidate =  player.global_position + Vector2.from_angle(random_angle) * random_distance
+		
+		if not is_inside_floor(candidate):
+			continue
+		
+		if candidate.distance_to(player.global_position) < minimum_player_distance:
+			continue
+		
+		if(is_teleport_position_clear(candidate)):
+			return candidate
+	
+	return global_position
 
-	move_and_slide()
+func is_teleport_position_clear(target_position: Vector2) -> bool:
+	var space_state = get_world_2d().direct_space_state
+
+	var circle = CircleShape2D.new()
+	circle.radius = wall_clearance
+
+	var query = PhysicsShapeQueryParameters2D.new()
+	query.shape = circle
+	query.transform = Transform2D(0.0, target_position)
+	query.collision_mask = 4
+
+	var collisions = space_state.intersect_shape(query)
+
+	return collisions.is_empty()
+
+func is_inside_floor(candidate: Vector2) -> bool:
+	return (
+		candidate.x >= top_left.global_position.x
+		and candidate.x <= bottom_right.global_position.x
+		and candidate.y >= top_left.global_position.y
+		and candidate.y <= bottom_right.global_position.y
+	)
+
+func shoot_cardinals():
+	var cardinal_directions = [
+		Vector2.UP,
+		Vector2.DOWN,
+		Vector2.LEFT,
+		Vector2.RIGHT
+	]
+
+	for direction in cardinal_directions:
+		var bullet = BULLET_SCENE.instantiate()
+		bullet.damage = bullet_damage
+		bullet.direction = direction
+
+		get_tree().current_scene.add_child(bullet)
+
+		bullet.global_position = global_position
+		bullet.rotation = direction.angle() + deg_to_rad(90)
+
+func shoot_diagonals():
+	var diagonal_directions = [
+		Vector2(-1, -1),
+		Vector2(1, -1),
+		Vector2(-1, 1),
+		Vector2(1, 1)
+	]
+
+	for direction in diagonal_directions:
+		direction = direction.normalized()
+
+		var bullet = BULLET_SCENE.instantiate()
+		bullet.damage = bullet_damage
+		bullet.direction = direction
+
+		get_tree().current_scene.add_child(bullet)
+
+		bullet.global_position = global_position
+		bullet.rotation = direction.angle() + deg_to_rad(90)
 
 func take_damage(amount : int):
 	current_health -= amount

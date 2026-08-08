@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://mk24iao5ru50"]
+
+[ext_resource type="Script" uid="uid://cx3ctbidem5le" path="res://Scripts/enemy_purple_bullet.gd" id="1_uf4ks"]
+[ext_resource type="Texture2D" uid="uid://b3lsvye08slud" path="res://Assets/Player Assets/bullet.png" id="2_qxoor"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oduel"]
+radius = 6.0
+height = 18.0
+
+[node name="EnemyPurpleBullet" type="Area2D" unique_id=362697951]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_uf4ks")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1303859549]
+texture = ExtResource("2_qxoor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1129708778]
+shape = SubResource("CapsuleShape2D_oduel")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

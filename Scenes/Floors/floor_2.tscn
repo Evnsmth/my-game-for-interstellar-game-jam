@@ -1,0 +1,60 @@
+[gd_scene format=4 uid="uid://b7b610ymgljhc"]
+
+[ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor_1.gd" id="1_svdex"]
+[ext_resource type="Texture2D" uid="uid://blh6cfpkag4c2" path="res://Assets/World/floortilemap.png" id="2_i00et"]
+[ext_resource type="PackedScene" uid="uid://wjmhauuhgyl4" path="res://Scenes/enemy_spawner.tscn" id="3_4skuu"]
+[ext_resource type="PackedScene" uid="uid://c4smou4w71n3i" path="res://Scenes/spawn_point.tscn" id="4_k610y"]
+[ext_resource type="PackedScene" uid="uid://dgeism0utilxi" path="res://Scenes/Enemies/red_slime.tscn" id="5_svdex"]
+[ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="6_ckxo7"]
+[ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/slime_info_panel.tscn" id="7_sf34u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_excss"]
+texture = ExtResource("2_i00et")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_pni4n"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 8
+sources/0 = SubResource("TileSetAtlasSource_excss")
+
+[node name="Floor1" type="Node2D" unique_id=395867149 groups=["floor"]]
+script = ExtResource("1_svdex")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1284568027]
+tile_map_data = PackedByteArray("AAAFAPz/AAADAAAAAAD6//z/AAADAAAAAAD6/wMAAAADAAAAAAAFAAMAAAADAAAAAAAFAP3/AAACAAAAAAAFAP7/AAACAAAAAAAFAP//AAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAD6/wIAAAACAAAAADD6/wEAAAACAAAAADD6/wAAAAACAAAAADD6////AAACAAAAADD6//7/AAACAAAAADD6//3/AAACAAAAADD7//z/AAACAAEAAAD8//z/AAACAAEAAAD9//z/AAACAAEAAAD+//z/AAACAAEAAAD///z/AAACAAEAAAAAAPz/AAACAAEAAAABAPz/AAACAAEAAAACAPz/AAACAAEAAAADAPz/AAACAAEAAAAEAPz/AAACAAEAAAD7/wMAAAACAAEAADD8/wMAAAACAAEAADD9/wMAAAACAAEAADD+/wMAAAACAAEAADD//wMAAAACAAEAADAAAAMAAAACAAEAADABAAMAAAACAAEAADACAAMAAAACAAEAADADAAMAAAACAAEAADAEAAMAAAACAAEAADD7//3/AAAAAAEAAAD8//3/AAAAAAEAAGD9//3/AAAAAAAAAFD+//3/AAABAAEAAGD///3/AAAAAAAAAGAAAP3/AAABAAAAAGABAP3/AAABAAAAAGACAP3/AAABAAEAAAADAP3/AAAAAAEAADAEAP7/AAABAAEAADADAP7/AAABAAEAAFACAP7/AAAAAAAAADABAP7/AAAAAAEAADAAAP7/AAABAAAAAGD///7/AAABAAEAAAD+//7/AAAAAAAAAFD9//7/AAAAAAAAAGD8//7/AAABAAEAAGD7//7/AAABAAEAAAD7////AAABAAAAAAD8////AAAAAAEAAFD9////AAABAAEAAAD+////AAABAAEAAGD/////AAABAAEAAGAAAP//AAABAAEAAGABAP//AAABAAAAADACAP//AAABAAEAAAADAP//AAABAAAAAAAEAP3/AAABAAEAAGAEAP//AAABAAAAADAEAAAAAAABAAAAAFADAAAAAAAAAAEAADACAAAAAAABAAAAADABAAAAAAABAAEAADAAAAAAAAAAAAAAAAD//wAAAAAAAAEAAGD+/wAAAAABAAEAAGD9/wAAAAAAAAAAAFD8/wAAAAAAAAAAAFD7/wAAAAABAAEAAFD7/wEAAAABAAEAADD8/wEAAAAAAAAAADD9/wEAAAABAAAAAAD+/wEAAAAAAAEAAFD//wEAAAABAAAAAGAAAAEAAAABAAAAAGABAAEAAAAAAAAAAAACAAEAAAAAAAAAAGADAAEAAAAAAAAAAAAEAAEAAAAAAAEAAAAEAAIAAAABAAEAAAADAAIAAAAAAAAAAGACAAIAAAABAAAAAGABAAIAAAAAAAAAAGAAAAIAAAAAAAAAAAD//wIAAAAAAAAAADD+/wIAAAAAAAEAADD9/wIAAAABAAEAAGD8/wIAAAABAAEAAAD7/wIAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_pni4n")
+
+[node name="EnemySpawner" parent="." unique_id=140305549 instance=ExtResource("3_4skuu")]
+position = Vector2(-251, 134)
+
+[node name="SpawnPoint" parent="EnemySpawner" unique_id=434222179 instance=ExtResource("4_k610y")]
+position = Vector2(383, -70)
+enemy_scene = ExtResource("5_svdex")
+
+[node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("6_ckxo7")]
+position = Vector2(-17, 17)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
+zoom = Vector2(2, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=974809362]
+
+[node name="SlimeInfoPanel" parent="CanvasLayer" unique_id=1380804590 instance=ExtResource("7_sf34u")]
+
+[node name="TeleportBounds" type="Node2D" parent="." unique_id=1135777183]
+
+[node name="TopLeft" type="Marker2D" parent="TeleportBounds" unique_id=1278917732 groups=["teleport_top_left"]]
+position = Vector2(-158, -93)
+
+[node name="Bottom Right" type="Marker2D" parent="TeleportBounds" unique_id=1571516716 groups=["teleport_bottom_right"]]
+position = Vector2(159, 95)

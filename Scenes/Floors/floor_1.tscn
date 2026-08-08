@@ -1,9 +1,8 @@
 [gd_scene format=4 uid="uid://dhmpbln4xn5i4"]
 
 [ext_resource type="Script" uid="uid://casq3bfke14it" path="res://Scripts/floor_1.gd" id="1_kmltg"]
-[ext_resource type="PackedScene" uid="uid://dmdh2cyi6uar0" path="res://Scenes/player.tscn" id="4_isvj2"]
 [ext_resource type="PackedScene" uid="uid://wjmhauuhgyl4" path="res://Scenes/enemy_spawner.tscn" id="4_uu0ng"]
-[ext_resource type="PackedScene" uid="uid://cvpkc72py30h0" path="res://Scenes/Enemies/blue_slime.tscn" id="5_136ch"]
+[ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="5_136ch"]
 [ext_resource type="PackedScene" uid="uid://c4smou4w71n3i" path="res://Scenes/spawn_point.tscn" id="5_cqckl"]
 [ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="5_kmltg"]
 [ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/slime_info_panel.tscn" id="11_6f226"]
@@ -42,10 +41,12 @@ position = Vector2(-251, 134)
 position = Vector2(383, -70)
 enemy_scene = ExtResource("5_136ch")
 
+[node name="SpawnPoint2" parent="EnemySpawner" unique_id=912528903 instance=ExtResource("5_cqckl")]
+position = Vector2(124, -199)
+enemy_scene = ExtResource("5_136ch")
+
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("5_kmltg")]
 position = Vector2(17, 17)
-
-[node name="Player" parent="." unique_id=1540911374 instance=ExtResource("4_isvj2")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
 zoom = Vector2(2, 2)
@@ -53,3 +54,11 @@ zoom = Vector2(2, 2)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=974809362]
 
 [node name="SlimeInfoPanel" parent="CanvasLayer" unique_id=1380804590 instance=ExtResource("11_6f226")]
+
+[node name="TeleportBounds" type="Node2D" parent="." unique_id=1135777183]
+
+[node name="TopLeft" type="Marker2D" parent="TeleportBounds" unique_id=1278917732 groups=["teleport_top_left"]]
+position = Vector2(-158, -93)
+
+[node name="Bottom Right" type="Marker2D" parent="TeleportBounds" unique_id=1571516716 groups=["teleport_bottom_right"]]
+position = Vector2(159, 95)
