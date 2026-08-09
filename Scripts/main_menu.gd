@@ -5,7 +5,8 @@ func _ready() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	RunManager.start_new_run()
+	get_tree().change_scene_to_file("res://Scenes/UI/opening_story.tscn")
 
 
 func _on_tutorial_button_pressed() -> void:
