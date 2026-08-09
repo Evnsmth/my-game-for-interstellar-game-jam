@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MyGameForInterstellarGameJam9"
-run/main_scene="uid://1j4k2pa43mol"
+run/main_scene="uid://d1rflnhi3m65a"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://Assets/Placeholders/icon.svg"
 

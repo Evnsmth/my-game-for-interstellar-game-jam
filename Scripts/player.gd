@@ -111,7 +111,7 @@ func move_state(delta):
 		if(can_dash == true):
 			change_state(State.DASH)
 	
-	if(Input.is_action_just_pressed("shoot")):
+	if(Input.is_action_pressed("shoot")):
 		shoot()
 	
 	# Increase velocity

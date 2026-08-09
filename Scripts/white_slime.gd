@@ -64,6 +64,7 @@ func _physics_process(_delta: float) -> void:
 
 func spawn_shockwave() -> void:
 	var ring = SHOCKWAVE_SCENE.instantiate()
+	ring.max_radius = ring.max_radius - 70
 
 	get_tree().current_scene.add_child(ring)
 

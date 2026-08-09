@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dgeism0utilxi" path="res://Scenes/Enemies/red_slime.tscn" id="7_wvh31"]
 [ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="7_yncug"]
 [ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="8_08pjx"]
-[ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/slime_info_panel.tscn" id="8_qudea"]
+[ext_resource type="PackedScene" uid="uid://bmk1h0i040p2b" path="res://Scenes/UI/slime_info_panel.tscn" id="8_qudea"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_excss"]
 texture = ExtResource("2_0bkfw")

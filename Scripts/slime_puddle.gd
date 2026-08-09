@@ -52,9 +52,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func consume():
 	player_nearby.apply_slime_effect(slime_effect)
 	
-	print("Consumed: ", slime_effect.effect_name)
-	
 	puddle_consumed.emit()
+	RunManager.consume_puddle()
 	
 	queue_free()
 
