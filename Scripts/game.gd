@@ -19,7 +19,8 @@ var floors = [
 	preload("res://Scenes/Floors/floor_7.tscn"),
 	preload("res://Scenes/Floors/floor_8.tscn"),
 	preload("res://Scenes/Floors/floor_9.tscn"),
-	preload("res://Scenes/Floors/floor_10.tscn")
+	preload("res://Scenes/Floors/floor_10.tscn"),
+	preload("res://Scenes/Floors/floor_final.tscn")
 ]
 
 
@@ -68,6 +69,8 @@ func _on_trapdoor_entered() -> void:
 	transition_to_next_floor()
 
 func transition_to_next_floor() -> void:
+	if current_floor_index < RunManager.total_floors:
+		RunManager.complete_floor()
 	await fade_to_black()
 
 	current_floor_index += 1

@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 signal died
 
+const SHOCKWAVE_SCENE = preload("res://Scenes/Enemies/shock_wave_ring.tscn")
+
 @onready var player: CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
-@onready var explosion_area: Area2D = $ExplosionArea
-@onready var regular: Sprite2D = $Regular
-@onready var explosion: Sprite2D = $Explosion
+@onready var sprite: Sprite2D = $Regular
 
 
 @export var speed = 30.0
@@ -26,11 +26,11 @@ enum State {
 var state = State.CHASE
 
 var current_health = max_health
+var normal_color : Color
 
 func _ready() -> void:
 	player  = get_tree().get_first_node_in_group("player")
-	regular.show()
-	explosion.hide()
+	normal_color = sprite.modulate
 
 func _physics_process(_delta: float) -> void:
 	match state:
@@ -40,9 +40,36 @@ func _physics_process(_delta: float) -> void:
 			move_and_slide()
 		
 		State.EXPLODE:
-			velocity = Vector2.ZERO
-			if(explosion_timer.time_left <= 0):
-				explode()
+			# Flash 1
+			sprite.modulate = Color(2.5, 2.5, 2.5)
+			await get_tree().create_timer(0.25).timeout
+			sprite.modulate = normal_color
+
+			await get_tree().create_timer(0.12).timeout
+
+			# Flash 2
+			sprite.modulate = Color(2.5, 2.5, 2.5)
+			await get_tree().create_timer(0.25).timeout
+			sprite.modulate = normal_color
+
+			await get_tree().create_timer(0.10).timeout
+
+			# Flash 3
+			sprite.modulate = Color(2.5, 2.5, 2.5)
+			await get_tree().create_timer(0.25).timeout
+			sprite.modulate = normal_color
+
+			spawn_shockwave()
+			die()
+
+func spawn_shockwave() -> void:
+	var ring = SHOCKWAVE_SCENE.instantiate()
+
+	get_tree().current_scene.add_child(ring)
+
+	ring.global_position = global_position
+	ring.damage = explosion_damage
+	pass
 
 func take_damage(amount : int):
 	current_health -= amount
@@ -50,17 +77,6 @@ func take_damage(amount : int):
 	if current_health <= 0:
 		explosion_timer.start(explosion_time)
 		state = State.EXPLODE
-
-func explode():
-	explosion.show()
-	regular.hide()
-	explosion_area.monitoring = true
-	var bodies = explosion_area.get_overlapping_bodies()
-
-	for body in bodies:
-		if body.has_method("get_hit"):
-			body.get_hit(explosion_damage, global_position)
-	die()
 
 func die():
 	var puddle: SlimePuddle = SLIME_PUDDLE_SCENE.instantiate()

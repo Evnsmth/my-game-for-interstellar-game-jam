@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://gvg68hd5af23"]
+
+[ext_resource type="Script" uid="uid://cywvnaetc8vet" path="res://Scripts/final_slime.gd" id="1_7qlrq"]
+[ext_resource type="Resource" uid="uid://dyg2ibv5gk3cu" path="res://Resources/Slime_Effects/violet_effect.tres" id="2_4gstt"]
+[ext_resource type="Texture2D" uid="uid://b8amcjhd4sjx1" path="res://Assets/Enemies/fslime.png" id="3_4gstt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qf47f"]
+size = Vector2(22.5, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gstt"]
+size = Vector2(60, 49)
+
+[node name="FinalSlime" type="CharacterBody2D" unique_id=1891310205]
+collision_layer = 2
+collision_mask = 11
+script = ExtResource("1_7qlrq")
+dropped_slime_effect = ExtResource("2_4gstt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=762775742]
+texture = ExtResource("3_4gstt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234055896]
+position = Vector2(-1.1920929e-07, 7.5)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_qf47f")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=455524939]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=712260987]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_4gstt")
+
+[node name="ExplosionCooldownTimer" type="Timer" parent="." unique_id=1437268998]
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="." unique_id=940552974]
+one_shot = true
+
+[node name="PShootCooldownTimer" type="Timer" parent="." unique_id=2136737113]
+one_shot = true
+
+[node name="BShootCooldownTimer" type="Timer" parent="." unique_id=132318538]
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="." unique_id=859829238]
+one_shot = true
+
+[node name="BShootTimer" type="Timer" parent="." unique_id=1330944737]
+one_shot = true
+
+[node name="RecoveryTimer" type="Timer" parent="." unique_id=1497289300]
+one_shot = true
+
+[node name="TelegraphTimer" type="Timer" parent="." unique_id=845108611]
+one_shot = true
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
