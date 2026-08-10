@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bkp2ihcsy1t1o"]
 
 [ext_resource type="Script" uid="uid://rw3x5mg5omer" path="res://Scripts/enemy_blue_bullet.gd" id="1_c2ql7"]
-[ext_resource type="Texture2D" uid="uid://b3lsvye08slud" path="res://Assets/Player Assets/bullet.png" id="2_m87xy"]
+[ext_resource type="Texture2D" uid="uid://bb5vbh24jif1e" path="res://Assets/Enemies/bbullet.png" id="2_c2ql7"]
+[ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="3_m87xy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oduel"]
 radius = 6.0
@@ -13,9 +14,16 @@ collision_mask = 9
 script = ExtResource("1_c2ql7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1303859549]
-texture = ExtResource("2_m87xy")
+texture = ExtResource("2_c2ql7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1129708778]
+visible = false
 shape = SubResource("CapsuleShape2D_oduel")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1310519989]
+texture_filter = 2
+color = Color(0.1764706, 0.61960787, 0.9607843, 1)
+energy = 0.7
+texture = ExtResource("3_m87xy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

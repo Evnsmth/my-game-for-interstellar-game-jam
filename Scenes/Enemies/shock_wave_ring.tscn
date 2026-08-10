@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://5b63y6at1rka" path="res://Scripts/shock_wave_ring.gd" id="1_jpqio"]
 [ext_resource type="Texture2D" uid="uid://cyvbbkq6iclew" path="res://Assets/Enemies/ring.png" id="2_w6q1m"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w6q1m"]
+blend_mode = 1
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_jpqio"]
 radius = 17.117243
 
@@ -10,6 +13,7 @@ radius = 17.117243
 script = ExtResource("1_jpqio")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917273101]
+material = SubResource("CanvasItemMaterial_w6q1m")
 texture = ExtResource("2_w6q1m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=670842043]

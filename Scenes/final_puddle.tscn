@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bc4c0bb3rujqa" path="res://Scripts/final_puddle.gd" id="1_goivi"]
 [ext_resource type="Texture2D" uid="uid://dedb6xm4tgb7q" path="res://Assets/Enemies/fpuddle-export.png" id="2_goivi"]
+[ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="3_yaiyd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c0n7x"]
 radius = 19.026299
@@ -17,6 +18,14 @@ texture = ExtResource("2_goivi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=821088188]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_c0n7x")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1858132915]
+texture_filter = 2
+position = Vector2(0, 7.5)
+color = Color(0.13725491, 0.14117648, 0.25490198, 1)
+energy = 0.9
+texture = ExtResource("3_yaiyd")
+texture_scale = 1.25
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

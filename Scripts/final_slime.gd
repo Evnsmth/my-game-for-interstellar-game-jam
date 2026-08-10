@@ -10,6 +10,8 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 
 @onready var player: CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var core_sprite: Sprite2D = $CoreSprite
+@onready var core_light: PointLight2D = $CoreLight
 @onready var explosion_cooldown_timer: Timer = $ExplosionCooldownTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var p_shoot_cooldown_timer: Timer = $PShootCooldownTimer
@@ -58,10 +60,16 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 @export var idle_squish_amount := 0.035
 @export var idle_squish_speed := 3.5
 
-@export var move_squish_amount := 0.07
-@export var move_squish_speed := 7.0
+@export var move_squish_amount := 0.05
+@export var move_squish_speed := 5.0
 
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/final_puddle.tscn")
+
+const COLOR_CRIMSON = Color("#ff3b4f")
+const COLOR_AZURE = Color("#4db8ff")
+const COLOR_VIOLET = Color("#b45cff")
+const COLOR_IVORY = Color("#ffffff")
+const COLOR_AMBER = Color("#ffad32")
 
 var next_state = null
 var squish_time := 0.0
@@ -87,6 +95,7 @@ var current_health = max_health
 func _ready() -> void:
 	player  = get_tree().get_first_node_in_group("player")
 	normal_color = sprite.modulate
+	set_core_color(COLOR_AMBER)
 	p_shoot_cooldown_timer.start(pshoot_cooldown_time)
 	b_shoot_cooldown_timer.start(bshoot_cooldown_time)
 
@@ -94,6 +103,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	match state:
 		State.CHASE:
+			set_core_color(COLOR_AMBER)
 			update_squish(delta)
 			var direction = global_position.direction_to(player.global_position)
 			velocity = direction * speed
@@ -102,7 +112,6 @@ func _physics_process(delta: float) -> void:
 			check_possible_attacks()
 			
 		State.TELEGRAPH:
-			update_squish(delta)
 			update_squish(delta)
 			velocity = Vector2.ZERO
 			if(telegraph_timer.time_left <= 0):
@@ -151,16 +160,20 @@ func _physics_process(delta: float) -> void:
 
 func check_possible_attacks():
 	if(global_position.distance_to(player.global_position) <= explosion_attack_range and explosion_cooldown_timer.time_left <= 0):
+		set_core_color(COLOR_IVORY)
 		state = State.EXPLODE
 	elif(global_position.distance_to(player.global_position) <= dash_attack_range and dash_cooldown_timer.time_left <= 0):
+		set_core_color(COLOR_CRIMSON)
 		next_state = State.DASH
 		telegraph_timer.start(dash_telegraph_time)
 		state = State.TELEGRAPH
 	elif(global_position.distance_to(player.global_position) <= pshoot_attack_range and p_shoot_cooldown_timer.time_left <= 0):
+		set_core_color(COLOR_VIOLET)
 		next_state = State.PSHOOT
 		telegraph_timer.start(pshoot_telegraph_time)
 		state = State.TELEGRAPH
 	elif(global_position.distance_to(player.global_position) <= bshoot_attack_range and b_shoot_cooldown_timer.time_left <= 0):
+		set_core_color(COLOR_AZURE)
 		next_state = State.BSHOOT
 		telegraph_timer.start(bshoot_telegraph_time)
 		state = State.TELEGRAPH
@@ -290,6 +303,10 @@ func die():
 
 	died.emit()
 	queue_free()
+
+func set_core_color(new_color: Color):
+	core_sprite.modulate = new_color
+	core_light.color = new_color
 
 func update_squish(delta):
 	squish_time += delta

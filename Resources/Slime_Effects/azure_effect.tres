@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SlimeEffect" format=3 uid="uid://laarvoyt07kf"]
 
-[ext_resource type="Script" uid="uid://c1n82txddblcq" path="res://Resources/Slime_Effects/slime_effect.gd" id="1_rfonf"]
+[ext_resource type="Script" uid="uid://c1n82txddblcq" path="res://Scripts/slime_effect.gd" id="1_rfonf"]
 [ext_resource type="Texture2D" uid="uid://wtd8swvt25sp" path="res://Assets/Enemies/bpuddle.png" id="1_sa8s0"]
 
 [resource]
