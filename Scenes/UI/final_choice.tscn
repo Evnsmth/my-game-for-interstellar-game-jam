@@ -1,41 +1,45 @@
 [gd_scene format=3 uid="uid://dc7eddoo8fe61"]
 
 [ext_resource type="Script" uid="uid://qf5e7towk4k3" path="res://Scripts/final_choice.gd" id="1_tlat6"]
+[ext_resource type="Texture2D" uid="uid://cf1ypmhy610rm" path="res://Assets/World/text_box.png" id="2_vn326"]
+[ext_resource type="FontFile" uid="uid://dahuh1radm4hl" path="res://Assets/LowresPixel-Regular.otf" id="3_gfkx4"]
 
 [node name="FinalChoice" type="CanvasLayer" unique_id=1289168760]
 process_mode = 2
 script = ExtResource("1_tlat6")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=72437027]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0.5882353)
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1343323148]
+offset_left = 359.0
+offset_top = 264.0
+offset_right = 788.0
+offset_bottom = 339.0
+metadata/_edit_group_ = true
 
-[node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=1343323148]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer" unique_id=1995078933]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1995078933]
 layout_mode = 2
 
-[node name="PromptLabel" type="Label" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=981812016]
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/VBoxContainer" unique_id=863696682]
+position = Vector2(216.99998, 37.499996)
+scale = Vector2(1.8125001, 0.88281244)
+texture = ExtResource("2_vn326")
+
+[node name="PromptLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=981812016]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gfkx4")
 text = "Consume the final slime to reach the Slime Singularity?"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=2003084028]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=2003084028]
 layout_mode = 2
 
-[node name="ConsumeButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/VBoxContainer" unique_id=375657821]
+[node name="ConsumeButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=375657821]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gfkx4")
 text = "CONSUME"
 
-[node name="LeaveButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/VBoxContainer" unique_id=754889347]
+[node name="LeaveButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=754889347]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gfkx4")
 text = "LEAVE"
 
-[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/VBoxContainer/ConsumeButton" to="." method="_on_consume_button_pressed"]
-[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/VBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/ConsumeButton" to="." method="_on_consume_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]

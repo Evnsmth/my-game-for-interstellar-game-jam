@@ -7,12 +7,12 @@ extends Control
 var current_card := 0
 
 var story_texts = [
-	"Every color. Every strength. Every piece of slime left in the dungeon becomes part of you",
-	"There are no other slimes left to consume.",
-	"No rivals.",
-	"No enemies.",
-	"Only you.",
-	"SINGULARITY REACHED",
+	"You turn your back to the final slime",
+	"The Singularity is in your reach...",
+	"But you leave it behind",
+	"You entered the dungeon as yourself",
+	"And that is how you'll leave it",
+	"CYCLE BROKEN",
 	"Thanks for playing!"
 ]
 

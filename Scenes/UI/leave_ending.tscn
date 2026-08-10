@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://yeaxkdrwnbkl"]
 
-[ext_resource type="Script" uid="uid://clcs8uvra2dl0" path="res://Scripts/ending.gd" id="1_x7tcg"]
+[ext_resource type="Script" uid="uid://b2w2ryhtpkuu2" path="res://Scripts/l_ending.gd" id="1_x7tcg"]
+[ext_resource type="PackedScene" uid="uid://b1d7igi7050hl" path="res://Scenes/Floors/leave_floor.tscn" id="2_3oxy6"]
+[ext_resource type="FontFile" uid="uid://dahuh1radm4hl" path="res://Assets/LowresPixel-Regular.otf" id="3_mgmij"]
 
 [node name="OpeningStory" type="Control" unique_id=1551128158]
 layout_mode = 3
@@ -11,24 +13,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x7tcg")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1251021602]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="LeaveFloor" parent="." unique_id=395867149 instance=ExtResource("2_3oxy6")]
+position = Vector2(573, 295)
 
-[node name="StoryImage" type="TextureRect" parent="." unique_id=634415776]
+[node name="StoryText" type="Label" parent="." unique_id=1514333720]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StoryText" type="Label" parent="." unique_id=36687753]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 322.0
+offset_top = 76.0
+offset_right = 823.0
+offset_bottom = 99.0
+theme_override_fonts/font = ExtResource("3_mgmij")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

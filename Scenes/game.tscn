@@ -32,7 +32,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.003921569)
 
-[node name="StatsMenu" type="PanelContainer" parent="CanvasLayer" unique_id=1035282942 groups=["stats_menu"]]
+[node name="StatsMenu" type="PanelContainer" parent="CanvasLayer" unique_id=1035282942]
 process_mode = 3
 visible = false
 offset_left = 581.585

@@ -23,7 +23,7 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 
 @export_category("Basic Stats")
 @export var speed = 100.0
-@export var max_health = 350.0
+@export var max_health = 10.0
 @export var contact_damage = 25.0
 
 @export_category("Explosion Attack")
@@ -305,10 +305,11 @@ func die():
 	puddle.global_position = global_position
 
 	get_tree().current_scene.add_child(puddle)
-	final_choice.open()
+	
 
 	died.emit()
 	await play_death_squash()
+	final_choice.open()
 	queue_free()
 
 func set_core_color(new_color: Color):

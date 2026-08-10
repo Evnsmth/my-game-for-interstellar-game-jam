@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dd1u2swk474ia"]
 
 [ext_resource type="Script" uid="uid://clcs8uvra2dl0" path="res://Scripts/ending.gd" id="1_od1lq"]
+[ext_resource type="PackedScene" uid="uid://dhwagbkexonsa" path="res://Scenes/Floors/consume_floor.tscn" id="2_k8umy"]
+[ext_resource type="FontFile" uid="uid://dahuh1radm4hl" path="res://Assets/LowresPixel-Regular.otf" id="3_6bpjl"]
 
 [node name="OpeningStory" type="Control" unique_id=1551128158]
 layout_mode = 3
@@ -11,24 +13,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_od1lq")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1251021602]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="StoryImage" type="TextureRect" parent="." unique_id=634415776]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ConsumeFLoor" parent="." unique_id=395867149 instance=ExtResource("2_k8umy")]
+position = Vector2(571, 296)
 
 [node name="StoryText" type="Label" parent="." unique_id=36687753]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 322.0
+offset_top = 76.0
+offset_right = 823.0
+offset_bottom = 99.0
+theme_override_fonts/font = ExtResource("3_6bpjl")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
