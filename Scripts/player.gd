@@ -73,12 +73,15 @@ var invincibility_timer := 0.0
 
 
 func _ready() -> void:
-	roll_ui.value = 1.0
 	recalculate_stats()
+	if roll_ui != null:
+		roll_ui.value = 1.0
 	current_health = max_health
-	health_label.text = str(current_health)
-	health_bar.max_value = max_health
-	health_bar.value = current_health
+	if health_label != null:
+		health_label.text = str(current_health)
+	if health_bar != null:
+		health_bar.max_value = max_health
+		health_bar.value = current_health
 	sprite.play("idle")
 
 func _process(_delta: float) -> void:
@@ -88,7 +91,8 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if(dash_cooldown_timer > 0):
 		dash_cooldown_timer -= delta
-		roll_ui.value = 1.0 - (dash_cooldown_timer / dash_cooldown_time)
+		if roll_ui != null:
+			roll_ui.value = 1.0 - (dash_cooldown_timer / dash_cooldown_time)
 	else:
 		can_dash = true
 	if invincibility_timer > 0:
@@ -136,7 +140,8 @@ func change_state(new_state):
 				"up",
 				"down"
 			)
-			roll_ui.value = 0.0
+			if roll_ui != null:
+				roll_ui.value = 0.0
 
 		State.CONSUME:
 			sprite.play("consume")
@@ -256,8 +261,9 @@ func get_hit(amount : int, source_position : Vector2):
 	invincibility_timer = invincibility_time
 
 	current_health -= amount
-	health_bar.value = current_health
-	health_label.text = str(current_health)
+	if health_bar != null:
+		health_bar.value = current_health
+		health_label.text = str(current_health)
 
 	if current_health <= 0:
 		change_state(State.DEAD)

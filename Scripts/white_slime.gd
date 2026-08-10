@@ -50,21 +50,21 @@ func _physics_process(delta: float) -> void:
 		
 		State.EXPLODE:
 			# Flash 1
-			play_hit_flash()
+			#play_hit_flash()
 			await get_tree().create_timer(0.25).timeout
 			sprite.modulate = normal_color
 
 			await get_tree().create_timer(0.12).timeout
 
 			# Flash 2
-			play_hit_flash()
+			#play_hit_flash()
 			await get_tree().create_timer(0.25).timeout
 			sprite.modulate = normal_color
 
 			await get_tree().create_timer(0.10).timeout
 
 			# Flash 3
-			play_hit_flash()
+			#play_hit_flash()
 			await get_tree().create_timer(0.25).timeout
 			sprite.modulate = normal_color
 
@@ -86,7 +86,7 @@ func spawn_shockwave() -> void:
 
 func take_damage(amount : int):
 	current_health -= amount
-	play_hit_flash()
+	#play_hit_flash()
 	
 	if current_health <= 0:
 		explosion_timer.start(explosion_time)

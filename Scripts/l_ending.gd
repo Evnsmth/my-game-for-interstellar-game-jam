@@ -18,7 +18,7 @@ var story_texts = [
 
 
 func _ready() -> void:
-	story_timer.start(3.0)
+	story_timer.start(3.05)
 	show_card()
 
 

@@ -23,7 +23,7 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 
 @export_category("Basic Stats")
 @export var speed = 100.0
-@export var max_health = 10.0
+@export var max_health = 50.0
 @export var contact_damage = 25.0
 
 @export_category("Explosion Attack")
@@ -213,7 +213,7 @@ func spawn_shockwave() -> void:
 
 	camera.shake(3.0)
 	var ring = SHOCKWAVE_SCENE.instantiate()
-	ring.max_radius = ring.max_radius + 25
+	ring.max_radius = ring.max_radius
 	ring.expand_speed = ring.expand_speed + 50
 
 	get_tree().current_scene.add_child(ring)
