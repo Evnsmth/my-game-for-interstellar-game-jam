@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://cltb6qex8b8tj" path="res://Scripts/tutorial_slime.gd" id="5_p1f1o"]
 [ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="6_p1f1o"]
 [ext_resource type="Script" uid="uid://r8sks4pgk1rx" path="res://Scripts/tutorial_trapdoor.gd" id="7_ys4pu"]
+[ext_resource type="FontFile" uid="uid://dahuh1radm4hl" path="res://Assets/LowresPixel-Regular.otf" id="8_on4kn"]
+[ext_resource type="Texture2D" uid="uid://cf1ypmhy610rm" path="res://Assets/World/text_box.png" id="9_70gml"]
+[ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="10_70gml"]
 
 [node name="Tutorial" type="Node2D" unique_id=2118776946 groups=["tutorial"]]
 script = ExtResource("1_omtrn")
@@ -14,10 +17,11 @@ script = ExtResource("1_omtrn")
 [node name="FloorT" parent="." unique_id=395867149 instance=ExtResource("2_feyax")]
 
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("6_p1f1o")]
-position = Vector2(-144, -79)
+position = Vector2(-144, -30)
 script = ExtResource("7_ys4pu")
 
 [node name="Player" parent="." unique_id=1540911374 instance=ExtResource("1_ka2pi")]
+position = Vector2(0, 46)
 
 [node name="TutorialSlime" parent="." unique_id=1891310205 instance=ExtResource("4_p8jf4")]
 position = Vector2(329, -165)
@@ -32,13 +36,30 @@ dropped_slime_effect = null
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -129.5
-offset_right = 129.5
-offset_bottom = 23.0
+offset_left = -207.0
+offset_top = 36.0
+offset_right = 210.0
+offset_bottom = 59.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("8_on4kn")
+theme_override_font_sizes/font_size = 20
 text = "Use WASD or Arrow Keys to move (Press N to continue)"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TextBox" type="Sprite2D" parent="." unique_id=815825591]
+position = Vector2(5.9999847, -136.99998)
+scale = Vector2(1.4374999, 0.7)
+texture = ExtResource("9_70gml")
+
+[node name="PointLight2D" type="PointLight2D" parent="TextBox" unique_id=317844793]
+texture_filter = 2
+position = Vector2(0, 7.5)
+color = Color(0.35686275, 1, 0.67058825, 1)
+energy = 1.1
+texture = ExtResource("10_70gml")
+texture_scale = 1.8
 
 [node name="EnemyStart" type="Marker2D" parent="." unique_id=425702957]
-position = Vector2(129, 1)
+position = Vector2(129, 52)

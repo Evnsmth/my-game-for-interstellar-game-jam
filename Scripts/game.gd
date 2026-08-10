@@ -5,6 +5,8 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var countdown_label: Label = $CanvasLayer/CountDownLabel
 @onready var death_screen = $DeathScreen
+@onready var stats_menu: PanelContainer = get_tree().get_first_node_in_group("stats_menu")
+
 
 
 var current_floor_index := 0
@@ -130,3 +132,10 @@ func run_countdown():
 
 func _on_player_died():
 	death_screen.show_death_screen()
+
+
+func _on_menu_button_pressed() -> void:
+	if stats_menu.visible:
+		stats_menu.close_menu()
+	else:
+		stats_menu.open_menu()

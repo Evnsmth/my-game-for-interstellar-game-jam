@@ -3,9 +3,15 @@
 [ext_resource type="Script" uid="uid://dea45jgdckauo" path="res://Scripts/game.gd" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://dmdh2cyi6uar0" path="res://Scenes/player.tscn" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://dajtpp5864cw2" path="res://Scripts/stats_menu.gd" id="3_wrm1d"]
-[ext_resource type="PackedScene" uid="uid://olejky8jnu54" path="res://Scenes/UI/assimilation_ui.tscn" id="4_3dryh"]
+[ext_resource type="Texture2D" uid="uid://cmq2q776h3u5o" path="res://Assets/World/stats_menu.png" id="4_rku1e"]
 [ext_resource type="PackedScene" uid="uid://bctb400mqcx1r" path="res://Scenes/UI/death_screen.tscn" id="5_wowpa"]
 [ext_resource type="Script" uid="uid://cbabj7s1a1twu" path="res://Scripts/camera_2d.gd" id="6_i6g32"]
+[ext_resource type="Texture2D" uid="uid://et3ncfy0pgwb" path="res://Assets/World/health_bar-export.png" id="7_v158k"]
+[ext_resource type="Texture2D" uid="uid://b4yjtahmhsar7" path="res://Assets/World/health_bar_full.png" id="8_h4fw4"]
+[ext_resource type="FontFile" uid="uid://dahuh1radm4hl" path="res://Assets/LowresPixel-Regular.otf" id="9_h4fw4"]
+[ext_resource type="Texture2D" uid="uid://df86ve4psss7a" path="res://Assets/World/roll_ui_filled.png" id="9_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://dd8ukrtevdbdi" path="res://Assets/World/roll_ui.png" id="10_o5yvi"]
+[ext_resource type="Texture2D" uid="uid://b6q8hslrs47q5" path="res://Assets/World/menu_icon.png" id="11_o5yvi"]
 
 [node name="Game" type="Node2D" unique_id=949777512]
 script = ExtResource("1_wrm1d")
@@ -26,19 +32,23 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.003921569)
 
-[node name="StatsMenu" type="PanelContainer" parent="CanvasLayer" unique_id=1035282942]
+[node name="StatsMenu" type="PanelContainer" parent="CanvasLayer" unique_id=1035282942 groups=["stats_menu"]]
 process_mode = 3
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 581.585
+offset_top = 131.815
+offset_right = 624.585
+offset_bottom = 235.815
+scale = Vector2(3, 3)
 script = ExtResource("3_wrm1d")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StatsMenu" unique_id=122725225]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1160560214]
-layout_mode = 2
-text = "Stats Menu"
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=139451776]
+position = Vector2(5.333332, 63)
+scale = Vector2(2, 2)
+texture = ExtResource("4_rku1e")
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1084273624]
 layout_mode = 2
@@ -51,10 +61,6 @@ layout_mode = 2
 
 [node name="MovementLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1912528380]
 layout_mode = 2
-
-[node name="CloseTipLabel" type="Label" parent="CanvasLayer/StatsMenu/VBoxContainer" unique_id=1441807820]
-layout_mode = 2
-text = "Press Tab to close"
 
 [node name="CountDownLabel" type="Label" parent="CanvasLayer" unique_id=665492685]
 anchors_preset = 8
@@ -69,14 +75,65 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_h4fw4")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AssimilationUI" parent="." unique_id=196975734 instance=ExtResource("4_3dryh")]
 
 [node name="DeathScreen" parent="." unique_id=1418186009 instance=ExtResource("5_wowpa")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1533811466 groups=["camera"]]
 zoom = Vector2(2, 2)
 script = ExtResource("6_i6g32")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1882886114]
+
+[node name="HealthLabel" type="Label" parent="UI" unique_id=1922317413 groups=["health_label"]]
+anchors_preset = -1
+anchor_left = 0.009000001
+anchor_top = 0.15300001
+anchor_right = 0.009000001
+anchor_bottom = 0.15300001
+offset_left = 8.631999
+offset_top = 37.855995
+offset_right = 45.632
+offset_bottom = 74.855995
+theme_override_fonts/font = ExtResource("9_h4fw4")
+text = "100.0
+"
+horizontal_alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI" unique_id=530674513 groups=["health_bar"]]
+offset_left = 6.0
+offset_top = 158.0
+offset_right = 46.0
+offset_bottom = 254.0
+scale = Vector2(4, 4)
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("7_v158k")
+texture_progress = ExtResource("8_h4fw4")
+
+[node name="RollIcon" type="TextureProgressBar" parent="UI" unique_id=530214473 groups=["roll_ui"]]
+offset_left = 8.0
+offset_top = 547.0
+offset_right = 48.0
+offset_bottom = 587.0
+scale = Vector2(3, 3)
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 3
+texture_under = ExtResource("10_o5yvi")
+texture_over = ExtResource("10_o5yvi")
+texture_progress = ExtResource("9_ldgsr")
+
+[node name="MenuButton" type="Button" parent="UI" unique_id=1383496923]
+process_mode = 3
+offset_left = 1080.0
+offset_right = 1104.0
+offset_bottom = 24.0
+scale = Vector2(3, 3)
+icon = ExtResource("11_o5yvi")
+
+[connection signal="pressed" from="UI/MenuButton" to="." method="_on_menu_button_pressed"]

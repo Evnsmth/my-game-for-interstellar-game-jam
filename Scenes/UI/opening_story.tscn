@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://di7syofnl00so"]
 
 [ext_resource type="Script" uid="uid://h7ebdc25qhkg" path="res://Scripts/opening_story.gd" id="1_c4gem"]
+[ext_resource type="PackedScene" uid="uid://d1rflnhi3m65a" path="res://Scenes/UI/main_menu.tscn" id="2_ne3rg"]
+[ext_resource type="Texture2D" uid="uid://cf1ypmhy610rm" path="res://Assets/World/text_box.png" id="3_mi76b"]
+[ext_resource type="FontFile" uid="uid://dahuh1radm4hl" path="res://Assets/LowresPixel-Regular.otf" id="4_k2fyf"]
 
 [node name="OpeningStory" type="Control" unique_id=1551128158]
 layout_mode = 3
@@ -11,35 +14,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c4gem")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1251021602]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="StoryTimer" type="Timer" parent="." unique_id=238657890]
+one_shot = true
 
-[node name="StoryImage" type="TextureRect" parent="." unique_id=634415776]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MainMenu" parent="." unique_id=323047475 instance=ExtResource("2_ne3rg")]
+layout_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=61920744]
+position = Vector2(570, 350)
+scale = Vector2(2, 2)
+texture = ExtResource("3_mi76b")
 
 [node name="StoryText" type="Label" parent="." unique_id=36687753]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 332.0
+offset_top = 236.0
+offset_right = 810.0
+offset_bottom = 468.0
+theme_override_fonts/font = ExtResource("4_k2fyf")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="SkipLabel" type="Label" parent="." unique_id=54871526]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 527.0
+offset_top = 502.0
+offset_right = 622.0
+offset_bottom = 525.0
 text = "SPACE - Skip"
-
-[node name="StoryTimer" type="Timer" parent="." unique_id=238657890]
-one_shot = true
 
 [connection signal="timeout" from="StoryTimer" to="." method="_on_story_timer_timeout"]

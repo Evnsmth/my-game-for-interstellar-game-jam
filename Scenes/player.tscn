@@ -121,23 +121,6 @@ shape = SubResource("RectangleShape2D_6t5aa")
 [node name="ShootTimer" type="Timer" parent="." unique_id=718421779]
 one_shot = true
 
-[node name="HealthLabel" type="Label" parent="." unique_id=1325916302]
-offset_left = -11.0
-offset_top = -14.0
-offset_right = 10.0
-offset_bottom = 13.0
-theme_override_font_sizes/font_size = 8
-text = "100.0
-"
-
-[node name="DashLabel" type="Label" parent="." unique_id=80314371]
-offset_left = -19.0
-offset_top = -21.0
-offset_right = 18.0
-offset_bottom = -9.0
-theme_override_font_sizes/font_size = 8
-text = "Can Dash"
-
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1213951146]
 texture_filter = 2
 position = Vector2(0, 7.5)

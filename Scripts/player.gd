@@ -17,10 +17,11 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 #region Onready Variables
 @onready var aim_pivot: Node2D = $AimPivot
 @onready var shoot_timer: Timer = $ShootTimer
-@onready var health_label: Label = $HealthLabel
-@onready var dash_label: Label = $DashLabel
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var puddle: Sprite2D = $Puddle
+@onready var health_bar: TextureProgressBar = get_tree().get_first_node_in_group("health_bar")
+@onready var health_label: Label = get_tree().get_first_node_in_group("health_label")
+@onready var roll_ui: TextureProgressBar = get_tree().get_first_node_in_group("roll_ui")
 #endregion
 
 #region Stat Related Variables
@@ -47,7 +48,7 @@ var consumed_effects: Array[SlimeEffect] = []
 @export var deceleration = 1200.0
 @export var dash_time = 0.25
 @export var dash_cooldown_time = 1.0
-@export var dash_speed = 400.0
+@export var dash_speed = 300.0
 @export var knockback_speed := 300.0
 @export var knockback_time := 0.125
 @export var invincibility_time := 0.8
@@ -72,9 +73,12 @@ var invincibility_timer := 0.0
 
 
 func _ready() -> void:
+	roll_ui.value = 1.0
 	recalculate_stats()
 	current_health = max_health
 	health_label.text = str(current_health)
+	health_bar.max_value = max_health
+	health_bar.value = current_health
 	sprite.play("idle")
 
 func _process(_delta: float) -> void:
@@ -84,9 +88,9 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if(dash_cooldown_timer > 0):
 		dash_cooldown_timer -= delta
+		roll_ui.value = 1.0 - (dash_cooldown_timer / dash_cooldown_time)
 	else:
 		can_dash = true
-		dash_label.text = "Can Dash"
 	if invincibility_timer > 0:
 		invincibility_timer -= delta
 	else:
@@ -132,6 +136,7 @@ func change_state(new_state):
 				"up",
 				"down"
 			)
+			roll_ui.value = 0.0
 
 		State.CONSUME:
 			sprite.play("consume")
@@ -170,7 +175,6 @@ func move_state(delta):
 
 func dash_state(delta):
 	can_dash = false
-	dash_label.text = "Cannot Dash"
 
 	velocity = dash_direction * (dash_speed * (movement_speed / base_movement_speed))
 
@@ -252,6 +256,7 @@ func get_hit(amount : int, source_position : Vector2):
 	invincibility_timer = invincibility_time
 
 	current_health -= amount
+	health_bar.value = current_health
 	health_label.text = str(current_health)
 
 	if current_health <= 0:
@@ -295,3 +300,4 @@ func apply_slime_effect(effect: SlimeEffect) -> void:
 	
 	current_health = max(current_health, 1.0)
 	health_label.text = str(current_health)
+	health_bar.max_value = max_health
