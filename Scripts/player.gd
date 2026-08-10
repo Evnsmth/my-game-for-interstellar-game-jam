@@ -6,6 +6,7 @@ enum State {
 	MOVE,
 	DASH,
 	KNOCKBACK,
+	CONSUME,
 	DEAD
 }
 
@@ -18,7 +19,8 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var health_label: Label = $HealthLabel
 @onready var dash_label: Label = $DashLabel
-@onready var sprite: Sprite2D = $Slime
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var puddle: Sprite2D = $Puddle
 #endregion
 
 #region Stat Related Variables
@@ -43,7 +45,7 @@ var consumed_effects: Array[SlimeEffect] = []
 
 
 @export var deceleration = 1200.0
-@export var dash_time = 0.1
+@export var dash_time = 0.25
 @export var dash_cooldown_time = 1.0
 @export var dash_speed = 400.0
 @export var knockback_speed := 300.0
@@ -70,6 +72,7 @@ func _ready() -> void:
 	recalculate_stats()
 	current_health = max_health
 	health_label.text = str(current_health)
+	sprite.play("idle")
 
 func _process(_delta: float) -> void:
 	aim_pivot.look_at(get_global_mouse_position())
@@ -95,18 +98,37 @@ func _physics_process(delta: float) -> void:
 			update_squish(delta)
 			knockback_state(delta)
 		
+		State.CONSUME:
+			velocity = Vector2.ZERO
+			move_and_slide()
+		
 		State.DEAD:
 			dead_state(delta)
 
 func change_state(new_state):
 	current_state = new_state
 	
-	if current_state == State.DASH:
-		dash_timer = dash_time
-		dash_direction = Input.get_vector("left","right","up","down")
-	
-	if current_state == State.DEAD:
-		print("You died")
+	match current_state:
+
+		State.MOVE:
+			sprite.play("idle")
+
+		State.DASH:
+			sprite.play("roll")
+			dash_timer = dash_time
+			dash_direction = Input.get_vector(
+				"left",
+				"right",
+				"up",
+				"down"
+			)
+
+		State.CONSUME:
+			sprite.play("consume")
+
+		State.DEAD:
+			sprite.hide()
+			puddle.show()
 
 func move_state(delta):
 	if not can_control:
@@ -160,6 +182,15 @@ func knockback_state(delta):
 	if knockback_timer <= 0:
 		set_collision_layer_value(1, true)
 		change_state(State.MOVE)
+
+func consume_slime(effect: SlimeEffect) -> void:
+	change_state(State.CONSUME)
+
+	await sprite.animation_finished
+
+	apply_slime_effect(effect)
+
+	change_state(State.MOVE)
 
 func dead_state(_delta):
 	died.emit()

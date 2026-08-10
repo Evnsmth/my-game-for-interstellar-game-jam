@@ -5,6 +5,7 @@ extends Node2D
 @onready var floor = get_tree().get_first_node_in_group("floor")
 @onready var light: PointLight2D = $PointLight2D
 @onready var slime_info_ui = get_tree().get_first_node_in_group("slime_info_ui")
+@onready var player = get_tree().get_first_node_in_group("player")
 
 @export var slime_effect: SlimeEffect
 @export var puddle_spacing: float = 25.0
@@ -53,11 +54,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 			slime_info_ui.hide_slime_info()
 
 func consume():
-	player_nearby.apply_slime_effect(slime_effect)
-	
+	player_nearby.consume_slime(slime_effect)
+
 	puddle_consumed.emit()
 	RunManager.consume_puddle()
-	
+
 	queue_free()
 
 func find_free_position() -> void:

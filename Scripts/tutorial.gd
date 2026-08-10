@@ -33,10 +33,10 @@ func next_step():
 			instruction_label.text = "Hold LEFT CLICK to shoot (Press N to continue)"
 
 		TutorialStep.DASH:
-			instruction_label.text = "Shift, Space, and Right click are all dash, choose your preference (Press N to continue)"
+			instruction_label.text = "Shift, Space, and Right click are all roll, choose your preference (Press N to continue)"
 
 		TutorialStep.DASH2:
-			instruction_label.text = "Getting used to the dash is important for evading enemies (Press N to continue)"
+			instruction_label.text = "Getting used to the roll is important for evading enemies (Press N to continue)"
 
 		TutorialStep.ENEMY:
 			start_enemy.emit()
