@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+# Never give up on the things that bring you the most joy
+
 signal died
 
 enum State {
