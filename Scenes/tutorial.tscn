@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c0vk8y1bbd04m"]
+
+[ext_resource type="PackedScene" uid="uid://dmdh2cyi6uar0" path="res://Scenes/player.tscn" id="1_ka2pi"]
+[ext_resource type="Script" uid="uid://cxqyiah8hmldq" path="res://Scripts/tutorial.gd" id="1_omtrn"]
+[ext_resource type="PackedScene" uid="uid://dodg6jps6o68m" path="res://Scenes/Floors/floor_tutorial.tscn" id="2_feyax"]
+[ext_resource type="PackedScene" uid="uid://bndfe452pa1y4" path="res://Scenes/Enemies/orange_slime.tscn" id="4_p8jf4"]
+[ext_resource type="Script" uid="uid://cltb6qex8b8tj" path="res://Scripts/tutorial_slime.gd" id="5_p1f1o"]
+[ext_resource type="PackedScene" uid="uid://bbb3jf06lrerb" path="res://Scenes/trapdoor.tscn" id="6_p1f1o"]
+[ext_resource type="Script" uid="uid://r8sks4pgk1rx" path="res://Scripts/tutorial_trapdoor.gd" id="7_ys4pu"]
+
+[node name="Tutorial" type="Node2D" unique_id=2118776946 groups=["tutorial"]]
+script = ExtResource("1_omtrn")
+
+[node name="FloorT" parent="." unique_id=395867149 instance=ExtResource("2_feyax")]
+
+[node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("6_p1f1o")]
+position = Vector2(-144, -79)
+script = ExtResource("7_ys4pu")
+
+[node name="Player" parent="." unique_id=1540911374 instance=ExtResource("1_ka2pi")]
+
+[node name="TutorialSlime" parent="." unique_id=1891310205 instance=ExtResource("4_p8jf4")]
+position = Vector2(329, -165)
+script = ExtResource("5_p1f1o")
+speed = 30.0
+contact_damage = 0.0
+dropped_slime_effect = null
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1205720266]
+
+[node name="InstructionLabel" type="Label" parent="CanvasLayer" unique_id=855949321]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_right = 129.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Use WASD or Arrow Keys to move (Press N to continue)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyStart" type="Marker2D" parent="." unique_id=425702957]
+position = Vector2(129, 1)

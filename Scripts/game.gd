@@ -4,6 +4,7 @@ extends Node2D
 @onready var fade_rect: ColorRect = $CanvasLayer/FadeRect
 @onready var player: CharacterBody2D = $Player
 @onready var countdown_label: Label = $CanvasLayer/CountDownLabel
+@onready var death_screen = $DeathScreen
 
 
 var current_floor_index := 0
@@ -21,10 +22,12 @@ var floors = [
 	preload("res://Scenes/Floors/floor_9.tscn"),
 	preload("res://Scenes/Floors/floor_10.tscn"),
 	preload("res://Scenes/Floors/floor_final.tscn")
+	
 ]
 
 
 func _ready() -> void:
+	player.died.connect(_on_player_died)
 	fade_rect.color.a = 1.0
 	var first_floor = await load_floor(current_floor_index)
 
@@ -114,3 +117,6 @@ func run_countdown():
 	await get_tree().create_timer(0.4).timeout
 
 	countdown_label.hide()
+
+func _on_player_died():
+	death_screen.show_death_screen()

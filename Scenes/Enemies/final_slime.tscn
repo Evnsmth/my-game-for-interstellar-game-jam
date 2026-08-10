@@ -55,4 +55,10 @@ one_shot = true
 [node name="TelegraphTimer" type="Timer" parent="." unique_id=845108611]
 one_shot = true
 
+[node name="Label" type="Label" parent="." unique_id=1987417135]
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -17.0
+
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SlimeEffect" format=3 uid="uid://dfc43vaeimvo7"]
+
+[ext_resource type="Texture2D" uid="uid://d0gdlephgm3u3" path="res://Assets/Enemies/opuddle.png" id="1_1cc1m"]
+[ext_resource type="Script" uid="uid://c1n82txddblcq" path="res://Resources/Slime_Effects/slime_effect.gd" id="1_wqgc0"]
+
+[resource]
+script = ExtResource("1_wqgc0")
+effect_name = "Tutorial Slime"
+description = "+200% Game Enjoyment, -6% Game Frustration. Consume (E)"
+puddle_texture = ExtResource("1_1cc1m")
+metadata/_custom_type_script = "uid://c1n82txddblcq"

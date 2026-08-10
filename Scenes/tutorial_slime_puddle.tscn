@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bs0gpgqtomvey"]
+
+[ext_resource type="Script" uid="uid://cqrsfl5vp55dj" path="res://Scripts/tutorial_slime_puddle.gd" id="1_xm36f"]
+[ext_resource type="Resource" uid="uid://dfc43vaeimvo7" path="res://Resources/Slime_Effects/tutorial_amber_effect.tres" id="2_2bqdg"]
+[ext_resource type="Texture2D" uid="uid://d0gdlephgm3u3" path="res://Assets/Enemies/opuddle.png" id="3_50nrv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0n7x"]
+radius = 15.033297
+
+[node name="TutorialSlimePuddle" type="Node2D" unique_id=217817962 groups=["puddle"]]
+script = ExtResource("1_xm36f")
+slime_effect = ExtResource("2_2bqdg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1911111113]
+texture = ExtResource("3_50nrv")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=997485097]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=821088188]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_c0n7x")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

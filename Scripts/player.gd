@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal died
 
 enum State {
 	MOVE,
@@ -151,7 +152,7 @@ func knockback_state(delta):
 		change_state(State.MOVE)
 
 func dead_state(_delta):
-	pass
+	died.emit()
 
 func shoot():
 	if(not shoot_timer.is_stopped()):

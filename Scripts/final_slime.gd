@@ -5,6 +5,7 @@ signal died
 const SHOCKWAVE_SCENE = preload("res://Scenes/Enemies/shock_wave_ring.tscn")
 const PBULLET_SCENE = preload("res://Scenes/Enemies/enemy_purple_bullet.tscn")
 const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
+@onready var label: Label = $Label
 
 @onready var player: CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
@@ -18,41 +19,41 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 @onready var telegraph_timer: Timer = $TelegraphTimer
 
 @export_category("Basic Stats")
-@export var speed = 90.0
-@export var max_health = 200.0
-@export var contact_damage = 20.0
+@export var speed = 100.0
+@export var max_health = 350.0
+@export var contact_damage = 25.0
 @export var dropped_slime_effect: SlimeEffect
 
 @export_category("Explosion Attack")
 @export var explosion_attack_range = 140.0
-@export var explosion_cooldown_time = 7.0
-@export var explosion_damage : float = 35.0
+@export var explosion_cooldown_time = 8.0
+@export var explosion_damage : float = 40.0
 @export var explosion_recovery_time = 1.0
 
 @export_category("Dash Attack") 
 @export var dash_attack_range = 150.0
-@export var dash_cooldown_time = 5.0
+@export var dash_cooldown_time = 4.0
 @export var dash_speed := 350.0
-@export var dash_duration := 0.45
+@export var dash_duration := 0.50
 @export var dash_telegraph_time := 0.5
-@export var dash_recovery_time := 0.4
+@export var dash_recovery_time := 0.3
 
 @export_category("PShoot Attack")
 @export var pshoot_attack_range = 175.0
 @export var pshoot_cooldown_time = 6.0
-@export var pshoot_damage = 10.0
-@export var pshoot_fire_rate = 2.0
-@export var pshoot_telegraph_time := 0.7
+@export var pshoot_damage = 15.0
+@export var pshoot_fire_rate = 2.5
+@export var pshoot_telegraph_time := 0.5
 @export var pshoot_recovery_time := 0.5
 
 @export_category("BShoot Attack")
 @export var bshoot_attack_range = 225.0
-@export var bshoot_cooldown_time = 9.0
+@export var bshoot_cooldown_time = 7.0
 @export var bshoot_bullet_amount = 5
-@export var bshoot_damage = 16.0
-@export var bshoot_fire_rate = 2.5
-@export var bshoot_telegraph_time := 0.9
-@export var bshoot_recovery_time := 0.8
+@export var bshoot_damage = 20.0
+@export var bshoot_fire_rate = 2.75
+@export var bshoot_telegraph_time := 0.7
+@export var bshoot_recovery_time := 0.6
 
 
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
@@ -246,7 +247,7 @@ func do_bshoot_attack():
 		return
 	
 	var bullet = BBULLET_SCENE.instantiate()
-	bullet.speed = bullet.speed + 100
+	bullet.speed = bullet.speed + 140
 	bullet.damage = bshoot_damage
 	
 	get_tree().current_scene.add_child(bullet)
@@ -260,6 +261,7 @@ func do_bshoot_attack():
 
 func take_damage(amount : int):
 	current_health -= amount
+	label.text = str(current_health)
 	
 	if current_health <= 0:
 		die()

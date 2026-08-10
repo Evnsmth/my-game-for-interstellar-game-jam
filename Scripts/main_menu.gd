@@ -6,11 +6,11 @@ func _ready() -> void:
 
 func _on_play_button_pressed() -> void:
 	RunManager.start_new_run()
-	get_tree().change_scene_to_file("res://Scenes/UI/opening_story.tscn")
+	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 
 func _on_tutorial_button_pressed() -> void:
-	print("Tutorial coming soon!")
+	get_tree().change_scene_to_file("res://Scenes/tutorial.tscn")
 
 
 func _on_quit_button_pressed() -> void:
