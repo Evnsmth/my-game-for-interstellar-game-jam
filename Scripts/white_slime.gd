@@ -72,6 +72,9 @@ func _physics_process(delta: float) -> void:
 			die()
 
 func spawn_shockwave() -> void:
+	var camera = get_tree().get_first_node_in_group("camera")
+
+	camera.shake(3.0)
 	var ring = SHOCKWAVE_SCENE.instantiate()
 	ring.max_radius = ring.max_radius - 70
 

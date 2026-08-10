@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dajtpp5864cw2" path="res://Scripts/stats_menu.gd" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://olejky8jnu54" path="res://Scenes/UI/assimilation_ui.tscn" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://bctb400mqcx1r" path="res://Scenes/UI/death_screen.tscn" id="5_wowpa"]
+[ext_resource type="Script" uid="uid://cbabj7s1a1twu" path="res://Scripts/camera_2d.gd" id="6_i6g32"]
 
 [node name="Game" type="Node2D" unique_id=949777512]
 script = ExtResource("1_wrm1d")
@@ -75,3 +76,7 @@ vertical_alignment = 1
 [node name="AssimilationUI" parent="." unique_id=196975734 instance=ExtResource("4_3dryh")]
 
 [node name="DeathScreen" parent="." unique_id=1418186009 instance=ExtResource("5_wowpa")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1533811466 groups=["camera"]]
+zoom = Vector2(2, 2)
+script = ExtResource("6_i6g32")

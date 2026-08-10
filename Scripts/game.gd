@@ -9,6 +9,7 @@ extends Node2D
 
 var current_floor_index := 0
 var new_floor
+var is_transitioning := false
 
 var floors = [
 	preload("res://Scenes/Floors/floor_1.tscn"),
@@ -68,9 +69,16 @@ func load_floor(index: int):
 	return next_floor
 
 func _on_trapdoor_entered() -> void:
+	if is_transitioning:
+		return
 	transition_to_next_floor()
 
 func transition_to_next_floor() -> void:
+	if is_transitioning:
+		return
+	
+	is_transitioning = true
+	
 	await fade_to_black()
 
 	current_floor_index += 1
@@ -78,6 +86,7 @@ func transition_to_next_floor() -> void:
 	var next_floor = await load_floor(current_floor_index)
 
 	if next_floor == null:
+		is_transitioning = false
 		return
 
 	player.can_control = false
@@ -89,6 +98,8 @@ func transition_to_next_floor() -> void:
 
 	player.can_control = true
 	next_floor.start_floor()
+	
+	is_transitioning = false
 
 func fade_to_black() -> void:
 	var tween = create_tween()

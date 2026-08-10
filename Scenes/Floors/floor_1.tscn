@@ -62,9 +62,6 @@ enemy_scene = ExtResource("5_136ch")
 [node name="Trapdoor" parent="." unique_id=1540619534 instance=ExtResource("5_kmltg")]
 position = Vector2(-112, -47)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1289237786]
-zoom = Vector2(2, 2)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=974809362]
 
 [node name="SlimeInfoPanel" parent="CanvasLayer" unique_id=1380804590 instance=ExtResource("11_6f226")]

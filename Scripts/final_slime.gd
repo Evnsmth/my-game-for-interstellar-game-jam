@@ -209,6 +209,9 @@ func do_explosion_attack():
 	state = State.RECOVER
 
 func spawn_shockwave() -> void:
+	var camera = get_tree().get_first_node_in_group("camera")
+
+	camera.shake(3.0)
 	var ring = SHOCKWAVE_SCENE.instantiate()
 	ring.max_radius = ring.max_radius + 25
 	ring.expand_speed = ring.expand_speed + 50

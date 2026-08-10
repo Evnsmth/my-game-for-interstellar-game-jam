@@ -12,6 +12,7 @@ extends Node2D
 
 
 var player_nearby: Node = null
+var wobble_tween: Tween
 
 signal puddle_consumed
 
@@ -88,20 +89,20 @@ func is_too_close_to_another_puddle() -> bool:
 	return false
 
 func start_wobble():
-	var tween = create_tween()
-	tween.set_loops()
+	wobble_tween = create_tween()
+	wobble_tween.set_loops()
 
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
+	wobble_tween.set_trans(Tween.TRANS_SINE)
+	wobble_tween.set_ease(Tween.EASE_IN_OUT)
 
-	tween.tween_property(
+	wobble_tween.tween_property(
 		sprite,
 		"scale",
 		Vector2(1.04, 0.96),
 		0.6
 	)
 
-	tween.tween_property(
+	wobble_tween.tween_property(
 		sprite,
 		"scale",
 		Vector2(0.98, 1.02),
@@ -109,4 +110,19 @@ func start_wobble():
 	)
 
 func _on_remove_puddles():
-	queue_free()
+	if wobble_tween:
+		wobble_tween.kill()
+
+	var tween = create_tween()
+
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		sprite,
+		"scale",
+		Vector2.ZERO,
+		0.3
+	)
+
+	tween.tween_callback(queue_free)

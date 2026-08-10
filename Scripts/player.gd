@@ -50,6 +50,7 @@ var consumed_effects: Array[SlimeEffect] = []
 @export var dash_speed = 400.0
 @export var knockback_speed := 300.0
 @export var knockback_time := 0.125
+@export var invincibility_time := 0.8
 
 @export var idle_squish_amount := 0.075
 @export var idle_squish_speed := 7.5
@@ -66,6 +67,8 @@ var can_dash = true
 var dash_direction = Vector2.ZERO
 var knockback_direction := Vector2.ZERO
 var knockback_timer := 0.0
+var invincible := false
+var invincibility_timer := 0.0
 
 
 func _ready() -> void:
@@ -84,6 +87,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		can_dash = true
 		dash_label.text = "Can Dash"
+	if invincibility_timer > 0:
+		invincibility_timer -= delta
+	else:
+		if invincible:
+			invincible = false
+			set_collision_layer_value(1, true)
+	sprite.modulate.a = 0.5 if invincible else 1.0
 
 	match current_state:
 		
@@ -174,6 +184,7 @@ func dash_state(delta):
 
 func knockback_state(delta):
 	set_collision_layer_value(1, false)
+
 	velocity = knockback_direction * knockback_speed
 	move_and_slide()
 
@@ -230,9 +241,19 @@ func update_squish(delta):
 	)
 
 func get_hit(amount : int, source_position : Vector2):
+	if invincible:
+		return
+	
+	var camera = get_tree().get_first_node_in_group("camera")
+
+	camera.shake(2.0)
+
+	invincible = true
+	invincibility_timer = invincibility_time
+
 	current_health -= amount
 	health_label.text = str(current_health)
-	
+
 	if current_health <= 0:
 		change_state(State.DEAD)
 	else:
