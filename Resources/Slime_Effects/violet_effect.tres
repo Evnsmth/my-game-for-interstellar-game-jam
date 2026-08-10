@@ -10,4 +10,5 @@ description = "Movement Speed +27%, Damage -12%. Consume (E)"
 damage_percent = -0.12
 movement_speed_percent = 0.27
 puddle_texture = ExtResource("1_k1olv")
+color = Color(0.5254902, 0.2509804, 0.9098039, 1)
 metadata/_custom_type_script = "uid://c1n82txddblcq"

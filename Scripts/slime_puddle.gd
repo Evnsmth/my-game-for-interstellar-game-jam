@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var floor = get_tree().get_first_node_in_group("floor")
+@onready var light: PointLight2D = $PointLight2D
 @onready var slime_info_ui = get_tree().get_first_node_in_group("slime_info_ui")
 
 @export var slime_effect: SlimeEffect
@@ -14,6 +15,7 @@ var player_nearby: Node = null
 signal puddle_consumed
 
 func _ready() -> void:
+	light.color = slime_effect.color
 	if slime_effect == null:
 		push_warning("This puddle has no SlimeEffect assigned.")
 		return

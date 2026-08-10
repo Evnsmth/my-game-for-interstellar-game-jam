@@ -11,17 +11,18 @@ var current_floor_index := 0
 var new_floor
 
 var floors = [
-	preload("res://Scenes/Floors/floor_final.tscn"),
+	preload("res://Scenes/Floors/floor_5.tscn"),
 	preload("res://Scenes/Floors/floor_1.tscn"),
 	preload("res://Scenes/Floors/floor_2.tscn"),
 	preload("res://Scenes/Floors/floor_3.tscn"),
 	preload("res://Scenes/Floors/floor_4.tscn"),
-	preload("res://Scenes/Floors/floor_5.tscn"),
+	
 	preload("res://Scenes/Floors/floor_6.tscn"),
 	preload("res://Scenes/Floors/floor_7.tscn"),
 	preload("res://Scenes/Floors/floor_8.tscn"),
 	preload("res://Scenes/Floors/floor_9.tscn"),
-	preload("res://Scenes/Floors/floor_10.tscn")
+	preload("res://Scenes/Floors/floor_10.tscn"),
+	preload("res://Scenes/Floors/floor_final.tscn")
 ]
 
 

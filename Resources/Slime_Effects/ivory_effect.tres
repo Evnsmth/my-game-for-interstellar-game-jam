@@ -10,4 +10,5 @@ description = "Max Health +35%, Fire Rate -20%. Consume (E)"
 fire_rate_percent = -0.2
 max_health_percent = 0.35
 puddle_texture = ExtResource("1_k2whd")
+color = Color(0.72156864, 0.64705884, 0.41568628, 1)
 metadata/_custom_type_script = "uid://c1n82txddblcq"

@@ -2,6 +2,7 @@ extends PanelContainer
 
 @onready var name_label: Label = $VBoxContainer/NameLabel
 @onready var description_label: Label = $VBoxContainer/DescriptionLabel
+@onready var sprite: Sprite2D = $Sprite2D
 
 func show_slime_info(effect: SlimeEffect) -> void:
 	name_label.text = "Tutorial Slime"

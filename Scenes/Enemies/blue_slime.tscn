@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://be7fvhrkmcpib" path="res://Scripts/blue_slime.gd" id="1_i1qlu"]
 [ext_resource type="Texture2D" uid="uid://bvpagcp1twtby" path="res://Assets/Enemies/bslime.png" id="2_mdk41"]
 [ext_resource type="Resource" uid="uid://laarvoyt07kf" path="res://Resources/Slime_Effects/azure_effect.tres" id="2_ojb6y"]
+[ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="4_ojb6y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojb6y"]
 size = Vector2(19, 30)
@@ -45,5 +46,13 @@ one_shot = true
 
 [node name="RepositionTimer" type="Timer" parent="." unique_id=482227754]
 one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=302937318]
+texture_filter = 2
+position = Vector2(0, 7.5)
+color = Color(0.1764706, 0.61960787, 0.9607843, 1)
+energy = 0.9
+texture = ExtResource("4_ojb6y")
+texture_scale = 1.8
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -18,6 +18,7 @@ const BULLET_SCENE = preload("res://Scenes/bullet.tscn")
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var health_label: Label = $HealthLabel
 @onready var dash_label: Label = $DashLabel
+@onready var sprite: Sprite2D = $Slime
 #endregion
 
 #region Stat Related Variables
@@ -48,8 +49,15 @@ var consumed_effects: Array[SlimeEffect] = []
 @export var knockback_speed := 300.0
 @export var knockback_time := 0.125
 
+@export var idle_squish_amount := 0.075
+@export var idle_squish_speed := 7.5
+
+@export var move_squish_amount := 0.12
+@export var move_squish_speed := 12.0
+
 var current_state: State = State.MOVE
 var can_control := true
+var squish_time := 0.0
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
 var can_dash = true
@@ -77,12 +85,14 @@ func _physics_process(delta: float) -> void:
 	match current_state:
 		
 		State.MOVE:
+			update_squish(delta)
 			move_state(delta)
 		
 		State.DASH:
 			dash_state(delta)
 		
 		State.KNOCKBACK:
+			update_squish(delta)
 			knockback_state(delta)
 		
 		State.DEAD:
@@ -168,6 +178,25 @@ func shoot():
 	bullet.rotation = bullet.direction.angle() + deg_to_rad(90)
 	
 	shoot_timer.start(1.0 / fire_rate)
+
+func update_squish(delta):
+	squish_time += delta
+
+	var is_moving = velocity.length() > 5.0
+
+	var amount = idle_squish_amount
+	var speed = idle_squish_speed
+
+	if is_moving:
+		amount = move_squish_amount
+		speed = move_squish_speed
+
+	var squish = sin(squish_time * speed) * amount
+
+	sprite.scale = Vector2(
+		1.0 + squish,
+		1.0 - squish
+	)
 
 func get_hit(amount : int, source_position : Vector2):
 	current_health -= amount

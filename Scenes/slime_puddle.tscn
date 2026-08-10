@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtnqcqy8e8nf2" path="res://Scripts/slime_puddle.gd" id="1_fkhu1"]
 [ext_resource type="Texture2D" uid="uid://wtd8swvt25sp" path="res://Assets/Enemies/bpuddle.png" id="2_fkhu1"]
+[ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="3_c0n7x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c0n7x"]
 radius = 15.033297
@@ -17,6 +18,14 @@ texture = ExtResource("2_fkhu1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=821088188]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_c0n7x")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1512058789]
+texture_filter = 2
+position = Vector2(0, 7.5)
+color = Color(0.078431375, 0.63529414, 0.4862745, 1)
+energy = 0.9
+texture = ExtResource("3_c0n7x")
+texture_scale = 1.25
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

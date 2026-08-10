@@ -4,7 +4,7 @@ extends Node2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
 @export var expand_speed := 100.0
-@export var max_radius := 200.0
+@export var max_radius := 225.0
 
 var damage : float = 25.0
 var radius := 17.12

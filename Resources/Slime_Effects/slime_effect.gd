@@ -14,3 +14,4 @@ extends Resource
 
 @export_category("Appearance")
 @export var puddle_texture: Texture2D
+@export var color: Color = Color.WHITE

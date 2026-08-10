@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cywvnaetc8vet" path="res://Scripts/final_slime.gd" id="1_7qlrq"]
 [ext_resource type="Texture2D" uid="uid://b8amcjhd4sjx1" path="res://Assets/Enemies/fslime.png" id="3_4gstt"]
+[ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="3_hh8qq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf47f"]
 size = Vector2(22.5, 27)
@@ -58,5 +59,13 @@ offset_left = -20.0
 offset_top = -40.0
 offset_right = 20.0
 offset_bottom = -17.0
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1926932080]
+texture_filter = 2
+position = Vector2(0, 10)
+color = Color(0.12941177, 0.09411765, 0.18431373, 1)
+energy = 0.9
+texture = ExtResource("3_hh8qq")
+texture_scale = 1.8
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -9,6 +9,7 @@ const BULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var recovery_timer: Timer = $RecoveryTimer
 @onready var reposition_timer: Timer = $RepositionTimer
+@onready var sprite: Sprite2D = $Sprite2D
 
 @export var speed = 60.0
 @export var max_health = 27.0
@@ -22,6 +23,12 @@ const BULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 @export var recovery_time = 2.0
 @export var dropped_slime_effect: SlimeEffect
 
+@export var idle_squish_amount := 0.05
+@export var idle_squish_speed := 5.0
+
+@export var move_squish_amount := 0.10
+@export var move_squish_speed := 10.0
+
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
 
 enum State {
@@ -34,6 +41,7 @@ enum State {
 var state = State.REPOSITION
 
 var current_health = max_health
+var squish_time := 0.0
 var bullets_shot = 0
 var strafe_sign = 1
 var wall_sliding = false
@@ -46,11 +54,10 @@ func _ready() -> void:
 	reposition_timer.start(repostion_time)
 	strafe_sign = [-1, 1].pick_random()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match state:
 		State.REPOSITION:
-			#print("Player: ", player)
-			#print("Shooting distance: ", shooting_distance)
+			update_squish(delta)
 			var distance = global_position.distance_to(player.global_position)
 			if distance < shooting_distance:
 				if reposition_timer.time_left > 0:
@@ -83,15 +90,18 @@ func _physics_process(_delta: float) -> void:
 
 		
 		State.TELEGRAPH:
+			update_squish(delta)
 			velocity = Vector2.ZERO
 			if(telegraph_timer.time_left <= 0):
 				state = State.SHOOT
 		
 		State.SHOOT:
+			update_squish(delta)
 			velocity = Vector2.ZERO
 			shoot()
 		
 		State.RECOVER:
+			update_squish(delta)
 			velocity = Vector2.ZERO
 			if(recovery_timer.time_left <= 0):
 				reposition_timer.start(repostion_time)
@@ -135,6 +145,24 @@ func die():
 	died.emit()
 	queue_free()
 
+func update_squish(delta):
+	squish_time += delta
+
+	var is_moving = velocity.length() > 5.0
+
+	var amount = idle_squish_amount
+	var speed = idle_squish_speed
+
+	if is_moving:
+		amount = move_squish_amount
+		speed = move_squish_speed
+
+	var squish = sin(squish_time * speed) * amount
+
+	sprite.scale = Vector2(
+		1.0 + squish,
+		1.0 - squish
+	)
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):

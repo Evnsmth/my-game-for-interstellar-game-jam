@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dpnv0rpxp7l8d" path="res://Scripts/white_slime.gd" id="1_j3dui"]
 [ext_resource type="Resource" uid="uid://dqa8xc3epcrih" path="res://Resources/Slime_Effects/ivory_effect.tres" id="2_acxhv"]
 [ext_resource type="Texture2D" uid="uid://xdjanf7yfih4" path="res://Assets/Enemies/wslime2.0.png" id="3_f1nac"]
+[ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="4_f1nac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3dui"]
 size = Vector2(36.47059, 49.411766)
@@ -22,6 +23,7 @@ position = Vector2(0, -10)
 texture = ExtResource("3_f1nac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=760849429]
+visible = false
 position = Vector2(-1.0000001, 5.500001)
 rotation = 1.5707964
 scale = Vector2(0.85, 0.85)
@@ -37,5 +39,13 @@ shape = SubResource("RectangleShape2D_acxhv")
 
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1702496487]
 one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=359102707]
+texture_filter = 2
+position = Vector2(0, 7.5)
+color = Color(0.72156864, 0.64705884, 0.41568628, 1)
+energy = 0.9
+texture = ExtResource("4_f1nac")
+texture_scale = 1.8
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c3mn7oljhwk7s" path="res://Scripts/orange_slime.gd" id="1_qf47f"]
 [ext_resource type="Resource" uid="uid://dpb50g7c5b6g5" path="res://Resources/Slime_Effects/amber_effect.tres" id="2_evlxf"]
 [ext_resource type="Texture2D" uid="uid://dgdw0fvjhtvw0" path="res://Assets/Enemies/oslime.png" id="3_qf47f"]
+[ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="4_evlxf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf47f"]
 size = Vector2(19, 30)
@@ -30,5 +31,13 @@ visible = false
 position = Vector2(0, 6.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_qf47f")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=320940194]
+texture_filter = 2
+position = Vector2(0, 7.5)
+color = Color(0.9411765, 0.6039216, 0.12941177, 1)
+energy = 0.9
+texture = ExtResource("4_evlxf")
+texture_scale = 1.8
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

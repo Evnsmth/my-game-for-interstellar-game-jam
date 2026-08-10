@@ -21,7 +21,7 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 
 @export_category("Basic Stats")
 @export var speed = 100.0
-@export var max_health = 10.0
+@export var max_health = 350.0
 @export var contact_damage = 25.0
 
 @export_category("Explosion Attack")
@@ -55,10 +55,16 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 @export var bshoot_telegraph_time := 0.7
 @export var bshoot_recovery_time := 0.6
 
+@export var idle_squish_amount := 0.035
+@export var idle_squish_speed := 3.5
+
+@export var move_squish_amount := 0.07
+@export var move_squish_speed := 7.0
 
 const SLIME_PUDDLE_SCENE = preload("res://Scenes/final_puddle.tscn")
 
 var next_state = null
+var squish_time := 0.0
 var normal_color : Color
 var explosion_started: bool = false
 var dash_direction = null
@@ -85,9 +91,10 @@ func _ready() -> void:
 	b_shoot_cooldown_timer.start(bshoot_cooldown_time)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match state:
 		State.CHASE:
+			update_squish(delta)
 			var direction = global_position.direction_to(player.global_position)
 			velocity = direction * speed
 			move_and_slide()
@@ -95,6 +102,8 @@ func _physics_process(_delta: float) -> void:
 			check_possible_attacks()
 			
 		State.TELEGRAPH:
+			update_squish(delta)
+			update_squish(delta)
 			velocity = Vector2.ZERO
 			if(telegraph_timer.time_left <= 0):
 				if(next_state == State.DASH):
@@ -103,12 +112,14 @@ func _physics_process(_delta: float) -> void:
 				state = next_state
 		
 		State.EXPLODE:
+			update_squish(delta)
 			velocity = Vector2.ZERO
 			if not explosion_started:
 				explosion_started = true
 				do_explosion_attack()
 		
 		State.DASH:
+			update_squish(delta)
 			velocity = dash_direction * dash_speed
 			move_and_slide()
 			
@@ -119,6 +130,7 @@ func _physics_process(_delta: float) -> void:
 				state = State.RECOVER
 		
 		State.PSHOOT:
+			update_squish(delta)
 			velocity = Vector2.ZERO
 			do_pshoot_attack()
 			
@@ -128,10 +140,12 @@ func _physics_process(_delta: float) -> void:
 			state = State.RECOVER
 		
 		State.BSHOOT:
+			update_squish(delta)
 			velocity = Vector2.ZERO
 			do_bshoot_attack()
 		
 		State.RECOVER:
+			update_squish(delta)
 			if(recovery_timer.time_left <= 0):
 				state = State.CHASE
 
@@ -277,6 +291,24 @@ func die():
 	died.emit()
 	queue_free()
 
+func update_squish(delta):
+	squish_time += delta
+
+	var is_moving = velocity.length() > 5.0
+
+	var amount = idle_squish_amount
+	var speed = idle_squish_speed
+
+	if is_moving:
+		amount = move_squish_amount
+		speed = move_squish_speed
+
+	var squish = sin(squish_time * speed) * amount
+
+	sprite.scale = Vector2(
+		1.0 + squish,
+		1.0 - squish
+	)
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):
