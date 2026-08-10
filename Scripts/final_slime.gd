@@ -6,6 +6,7 @@ const SHOCKWAVE_SCENE = preload("res://Scenes/Enemies/shock_wave_ring.tscn")
 const PBULLET_SCENE = preload("res://Scenes/Enemies/enemy_purple_bullet.tscn")
 const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 @onready var label: Label = $Label
+@onready var final_choice = get_tree().get_first_node_in_group("final")
 
 @onready var player: CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
@@ -20,9 +21,8 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 
 @export_category("Basic Stats")
 @export var speed = 100.0
-@export var max_health = 350.0
+@export var max_health = 10.0
 @export var contact_damage = 25.0
-@export var dropped_slime_effect: SlimeEffect
 
 @export_category("Explosion Attack")
 @export var explosion_attack_range = 140.0
@@ -56,7 +56,7 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 @export var bshoot_recovery_time := 0.6
 
 
-const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
+const SLIME_PUDDLE_SCENE = preload("res://Scenes/final_puddle.tscn")
 
 var next_state = null
 var normal_color : Color
@@ -267,12 +267,12 @@ func take_damage(amount : int):
 		die()
 
 func die():
-	var puddle: SlimePuddle = SLIME_PUDDLE_SCENE.instantiate()
+	var puddle = SLIME_PUDDLE_SCENE.instantiate()
 
 	puddle.global_position = global_position
-	puddle.slime_effect = dropped_slime_effect
 
 	get_tree().current_scene.add_child(puddle)
+	final_choice.open()
 
 	died.emit()
 	queue_free()

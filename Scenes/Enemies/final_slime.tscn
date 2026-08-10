@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://gvg68hd5af23"]
 
 [ext_resource type="Script" uid="uid://cywvnaetc8vet" path="res://Scripts/final_slime.gd" id="1_7qlrq"]
-[ext_resource type="Resource" uid="uid://dyg2ibv5gk3cu" path="res://Resources/Slime_Effects/violet_effect.tres" id="2_4gstt"]
 [ext_resource type="Texture2D" uid="uid://b8amcjhd4sjx1" path="res://Assets/Enemies/fslime.png" id="3_4gstt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf47f"]
@@ -14,7 +13,6 @@ size = Vector2(60, 49)
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_7qlrq")
-dropped_slime_effect = ExtResource("2_4gstt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=762775742]
 texture = ExtResource("3_4gstt")
