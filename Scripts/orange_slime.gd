@@ -20,9 +20,11 @@ const SLIME_PUDDLE_SCENE = preload("res://Scenes/slime_puddle.tscn")
 
 var current_health = max_health
 var squish_time := 0.0
+var death_scale := Vector2.ONE
 
 
 func _ready() -> void:
+	sprite.material = sprite.material.duplicate()
 	player  = get_tree().get_first_node_in_group("player")
 	if(dropped_slime_effect.effect_name == "Amber Slime"):
 		dropped_slime_effect = create_random_amber_effect()
@@ -74,11 +76,13 @@ func create_random_amber_effect() -> SlimeEffect:
 
 func take_damage(amount : int):
 	current_health -= amount
+	play_hit_flash()
 	
 	if current_health <= 0:
 		die()
 
 func die():
+	
 	var puddle: SlimePuddle = SLIME_PUDDLE_SCENE.instantiate()
 
 	puddle.global_position = global_position
@@ -87,6 +91,8 @@ func die():
 	get_tree().current_scene.add_child(puddle)
 
 	died.emit()
+	
+	await play_death_squash()
 	queue_free()
 
 func update_squish(delta):
@@ -103,10 +109,51 @@ func update_squish(delta):
 
 	var squish = sin(squish_time * speed) * amount
 
-	sprite.scale = Vector2(
+	var base_scale = Vector2(
 		1.0 + squish,
 		1.0 - squish
 	)
+	sprite.scale = base_scale * death_scale
+
+func play_hit_flash():
+	var shader_material := sprite.material as ShaderMaterial
+
+	if shader_material == null:
+		return
+
+	shader_material.set_shader_parameter("flash_amount", 1.0)
+
+	var tween = create_tween()
+
+	tween.tween_method(
+		func(value):
+			shader_material.set_shader_parameter("flash_amount", value),
+		1.0,
+		0.0,
+		0.12
+	)
+
+func play_death_squash():
+	var tween = create_tween()
+
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		self,
+		"death_scale",
+		Vector2(1.5, 0.15),
+		0.18
+	)
+
+	tween.parallel().tween_property(
+		sprite,
+		"modulate:a",
+		0.0,
+		0.18
+	)
+	
+	await tween.finished
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):

@@ -28,6 +28,7 @@ texture = ExtResource("2_6t5aa")
 texture = ExtResource("3_vgqql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1510944965]
+visible = false
 position = Vector2(0, 6.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_6t5aa")
@@ -55,7 +56,7 @@ text = "Can Dash"
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1213951146]
 texture_filter = 2
 position = Vector2(0, 7.5)
-color = Color(0.078431375, 0.63529414, 0.4862745, 1)
-energy = 0.9
+color = Color(0.35686275, 1, 0.67058825, 1)
+energy = 1.1
 texture = ExtResource("4_vgqql")
 texture_scale = 1.8

@@ -3,7 +3,12 @@
 [ext_resource type="Script" uid="uid://dwnhs08hscvey" path="res://Scripts/purple_slime.gd" id="1_krsyl"]
 [ext_resource type="Resource" uid="uid://dyg2ibv5gk3cu" path="res://Resources/Slime_Effects/violet_effect.tres" id="2_1aqnj"]
 [ext_resource type="Texture2D" uid="uid://b7hx7mcbiijeb" path="res://Assets/Enemies/pslime.png" id="3_1aqnj"]
+[ext_resource type="Shader" uid="uid://bmld0wtyohii4" path="res://hit_shader.gdshader" id="3_5tb1r"]
 [ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="4_mmr7m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_014u1"]
+shader = ExtResource("3_5tb1r")
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmr7m"]
 size = Vector2(19, 30)
@@ -15,6 +20,7 @@ script = ExtResource("1_krsyl")
 dropped_slime_effect = ExtResource("2_1aqnj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=13616952]
+material = SubResource("ShaderMaterial_014u1")
 texture = ExtResource("3_1aqnj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2108303765]

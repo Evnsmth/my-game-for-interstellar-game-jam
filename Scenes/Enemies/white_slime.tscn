@@ -3,7 +3,12 @@
 [ext_resource type="Script" uid="uid://dpnv0rpxp7l8d" path="res://Scripts/white_slime.gd" id="1_j3dui"]
 [ext_resource type="Resource" uid="uid://dqa8xc3epcrih" path="res://Resources/Slime_Effects/ivory_effect.tres" id="2_acxhv"]
 [ext_resource type="Texture2D" uid="uid://xdjanf7yfih4" path="res://Assets/Enemies/wslime2.0.png" id="3_f1nac"]
+[ext_resource type="Shader" uid="uid://bmld0wtyohii4" path="res://hit_shader.gdshader" id="3_f5ved"]
 [ext_resource type="Texture2D" uid="uid://dg8sw4bsb3gen" path="res://Assets/World/light_texture.png" id="4_f1nac"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r28su"]
+shader = ExtResource("3_f5ved")
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3dui"]
 size = Vector2(36.47059, 49.411766)
@@ -19,6 +24,7 @@ explosion_time = 1.0
 dropped_slime_effect = ExtResource("2_acxhv")
 
 [node name="Regular" type="Sprite2D" parent="." unique_id=661152713]
+material = SubResource("ShaderMaterial_r28su")
 position = Vector2(0, -10)
 texture = ExtResource("3_f1nac")
 

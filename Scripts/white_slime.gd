@@ -37,6 +37,7 @@ var normal_color : Color
 
 func _ready() -> void:
 	player  = get_tree().get_first_node_in_group("player")
+	sprite.material = sprite.material.duplicate()
 	normal_color = sprite.modulate
 
 func _physics_process(delta: float) -> void:
@@ -49,21 +50,21 @@ func _physics_process(delta: float) -> void:
 		
 		State.EXPLODE:
 			# Flash 1
-			sprite.modulate = Color(2.5, 2.5, 2.5)
+			play_hit_flash()
 			await get_tree().create_timer(0.25).timeout
 			sprite.modulate = normal_color
 
 			await get_tree().create_timer(0.12).timeout
 
 			# Flash 2
-			sprite.modulate = Color(2.5, 2.5, 2.5)
+			play_hit_flash()
 			await get_tree().create_timer(0.25).timeout
 			sprite.modulate = normal_color
 
 			await get_tree().create_timer(0.10).timeout
 
 			# Flash 3
-			sprite.modulate = Color(2.5, 2.5, 2.5)
+			play_hit_flash()
 			await get_tree().create_timer(0.25).timeout
 			sprite.modulate = normal_color
 
@@ -82,6 +83,7 @@ func spawn_shockwave() -> void:
 
 func take_damage(amount : int):
 	current_health -= amount
+	play_hit_flash()
 	
 	if current_health <= 0:
 		explosion_timer.start(explosion_time)
@@ -116,6 +118,33 @@ func update_squish(delta):
 		1.0 + squish,
 		1.0 - squish
 	)
+
+func play_hit_flash():
+	var shader_material := sprite.material as ShaderMaterial
+
+	if shader_material == null:
+		return
+
+	shader_material.set_shader_parameter("flash_amount", 1.0)
+
+	var tween = create_tween()
+
+	tween.tween_method(
+		func(value):
+			shader_material.set_shader_parameter("flash_amount", value),
+		1.0,
+		0.0,
+		0.12
+	)
+
+	tween.parallel().tween_property(
+		sprite,
+		"modulate:a",
+		0.0,
+		0.18
+	)
+	
+	await tween.finished
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):

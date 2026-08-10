@@ -73,6 +73,7 @@ const COLOR_AMBER = Color("#ffad32")
 
 var next_state = null
 var squish_time := 0.0
+var death_scale := Vector2.ONE
 var normal_color : Color
 var explosion_started: bool = false
 var dash_direction = null
@@ -96,6 +97,7 @@ func _ready() -> void:
 	player  = get_tree().get_first_node_in_group("player")
 	normal_color = sprite.modulate
 	set_core_color(COLOR_AMBER)
+	sprite.material = sprite.material.duplicate()
 	p_shoot_cooldown_timer.start(pshoot_cooldown_time)
 	b_shoot_cooldown_timer.start(bshoot_cooldown_time)
 
@@ -180,21 +182,21 @@ func check_possible_attacks():
 
 func do_explosion_attack():
 	# Flash 1
-	sprite.modulate = Color(2.5, 2.5, 2.5)
+	play_hit_flash()
 	await get_tree().create_timer(0.15).timeout
 	sprite.modulate = normal_color
 
 	await get_tree().create_timer(0.12).timeout
 
 	# Flash 2
-	sprite.modulate = Color(2.5, 2.5, 2.5)
+	play_hit_flash()
 	await get_tree().create_timer(0.15).timeout
 	sprite.modulate = normal_color
 
 	await get_tree().create_timer(0.10).timeout
 
 	# Flash 3
-	sprite.modulate = Color(2.5, 2.5, 2.5)
+	play_hit_flash()
 	await get_tree().create_timer(0.15).timeout
 	sprite.modulate = normal_color
 
@@ -289,6 +291,7 @@ func do_bshoot_attack():
 func take_damage(amount : int):
 	current_health -= amount
 	label.text = str(current_health)
+	play_hit_flash()
 	
 	if current_health <= 0:
 		die()
@@ -302,11 +305,30 @@ func die():
 	final_choice.open()
 
 	died.emit()
+	await play_death_squash()
 	queue_free()
 
 func set_core_color(new_color: Color):
 	core_sprite.modulate = new_color
 	core_light.color = new_color
+
+func play_hit_flash():
+	var shader_material := sprite.material as ShaderMaterial
+
+	if shader_material == null:
+		return
+
+	shader_material.set_shader_parameter("flash_amount", 1.0)
+
+	var tween = create_tween()
+
+	tween.tween_method(
+		func(value):
+			shader_material.set_shader_parameter("flash_amount", value),
+		1.0,
+		0.0,
+		0.12
+	)
 
 func update_squish(delta):
 	squish_time += delta
@@ -322,10 +344,33 @@ func update_squish(delta):
 
 	var squish = sin(squish_time * speed) * amount
 
-	sprite.scale = Vector2(
+	var base_scale = Vector2(
 		1.0 + squish,
 		1.0 - squish
 	)
+	sprite.scale = base_scale * death_scale
+
+func play_death_squash():
+	var tween = create_tween()
+
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		self,
+		"death_scale",
+		Vector2(1.5, 0.15),
+		0.18
+	)
+
+	tween.parallel().tween_property(
+		sprite,
+		"modulate:a",
+		0.0,
+		0.18
+	)
+	
+	await tween.finished
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("get_hit"):

@@ -16,6 +16,7 @@ signal puddle_consumed
 
 func _ready() -> void:
 	light.color = slime_effect.color
+	start_wobble()
 	if slime_effect == null:
 		push_warning("This puddle has no SlimeEffect assigned.")
 		return
@@ -84,6 +85,27 @@ func is_too_close_to_another_puddle() -> bool:
 			return true
 
 	return false
+
+func start_wobble():
+	var tween = create_tween()
+	tween.set_loops()
+
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+
+	tween.tween_property(
+		sprite,
+		"scale",
+		Vector2(1.04, 0.96),
+		0.6
+	)
+
+	tween.tween_property(
+		sprite,
+		"scale",
+		Vector2(0.98, 1.02),
+		0.6
+	)
 
 func _on_remove_puddles():
 	queue_free()
