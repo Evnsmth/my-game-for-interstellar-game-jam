@@ -23,7 +23,7 @@ const BBULLET_SCENE = preload("res://Scenes/Enemies/enemy_blue_bullet.tscn")
 
 @export_category("Basic Stats")
 @export var speed = 100.0
-@export var max_health = 50.0
+@export var max_health = 350.0
 @export var contact_damage = 25.0
 
 @export_category("Explosion Attack")
