@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 # Never give up on the things that bring you the most joy
 
+# Special thanks to Henry, Leo, Charlotte, and Dad
+
 signal died
 
 enum State {
